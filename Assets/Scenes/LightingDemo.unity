@@ -370,59 +370,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &564362968
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 564362970}
-  - component: {fileID: 564362969}
-  m_Layer: 0
-  m_Name: Emitter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &564362969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564362968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a71827f73298cb488d93621fa34401c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewDistance: 10
-  viewAngle: 100
-  posChanged: 0
-  obstacles: {fileID: 0}
-  corners:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  currentCasts: []
---- !u!4 &564362970
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564362968}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &647784379
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,9 +567,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa60dbac5ba2c44995fd18aea4fee5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewAngle: 100
-  rayCount: 50
-  viewDistance: 50
+  viewAngle: 35
+  rayCount: 100
+  viewDistance: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  startingAngle: 0
 --- !u!4 &1087911517
 Transform:
   m_ObjectHideFlags: 0
@@ -631,11 +582,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087911513}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5626814, y: -1.045556, z: -4.2169123}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1221931933
 GameObject:
@@ -648,7 +599,6 @@ GameObject:
   - component: {fileID: 1221931938}
   - component: {fileID: 1221931937}
   - component: {fileID: 1221931936}
-  - component: {fileID: 1221931935}
   - component: {fileID: 1221931934}
   m_Layer: 0
   m_Name: Character
@@ -656,7 +606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1221931934
 Rigidbody2D:
   serializedVersion: 4
@@ -678,21 +628,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1221931935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221931933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa60dbac5ba2c44995fd18aea4fee5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewAngle: 70
-  rayCount: 0
-  viewDistance: 0
 --- !u!114 &1221931936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  fieldOfView: {fileID: 1087911516}
 --- !u!212 &1221931937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -864,7 +800,7 @@ GameObject:
   - component: {fileID: 1439665446}
   - component: {fileID: 1439665445}
   - component: {fileID: 1439665447}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -903,7 +839,7 @@ RectTransform:
   m_Children:
   - {fileID: 555429047}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
