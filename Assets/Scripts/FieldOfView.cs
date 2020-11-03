@@ -14,6 +14,9 @@ public class FieldOfView : MonoBehaviour
     private Vector3 origin;
     public float startingAngle;
 
+    public bool radial;
+    public float radialDistance;
+
     public static Vector3 GetVectorFromAngle(float angle)
     {
         float angleRad = angle * (Mathf.PI / 180f);
@@ -45,7 +48,8 @@ public class FieldOfView : MonoBehaviour
 
     }
 
-    void LateUpdate() { 
+    void LateUpdate() {
+
         float angle = startingAngle;
         float angleIncrease = viewAngle / rayCount;
 
@@ -85,7 +89,7 @@ public class FieldOfView : MonoBehaviour
             vertexIndex++;
         }
 
-
+        
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = tris;

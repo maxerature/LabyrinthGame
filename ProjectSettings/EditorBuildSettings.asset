@@ -6,16 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-<<<<<<< HEAD
-    path: Assets/Scenes/RoomGenDemo.unity
-=======
     path: Assets/Scenes/Menu.unity
     guid: 5ef3aff90fdac6f428f27d9fcb89ba22
   - enabled: 1
     path: Assets/Scenes/Controls.unity
     guid: 42fee7bed72032546926a110921bd70b
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
->>>>>>> Menu
+    path: Assets/Scenes/RoomGenDemo.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

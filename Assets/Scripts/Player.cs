@@ -30,7 +30,12 @@ public class Player : MonoBehaviour
     {
         Vector3 targetPosition = GetMouseWorldPosition();
         Vector3 aimDir = (targetPosition - transform.position).normalized;
-        transform.LookAt(targetPosition);
+
+        Vector3 vectorToTarget = targetPosition - transform.position;
+        Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
+        Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+        transform.rotation = targetRotation;
+
         fieldOfView.SetAimDirection(aimDir);
         fieldOfView.SetOrigin(transform.position);
 
