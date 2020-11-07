@@ -336,6 +336,14 @@ PrefabInstance:
       propertyPath: rightDoor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7662665248668865499, guid: 20d4ac72904c9a14bbf45d722aa2057a, type: 3}
+      propertyPath: leftDoor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662665248668865499, guid: 20d4ac72904c9a14bbf45d722aa2057a, type: 3}
+      propertyPath: topDoorSpawned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7904128215608586754, guid: 20d4ac72904c9a14bbf45d722aa2057a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

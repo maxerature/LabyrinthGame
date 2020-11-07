@@ -60,7 +60,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c80ccc14f5e4b469d8517c10b2a596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedDoor: {fileID: 1527602618668521068, guid: ab1160e9f2862854e9349726df5b8485, type: 3}
+  closedDoor: {fileID: 2919128041290466116, guid: 02b827f74d755fe46a84096559a431d0, type: 3}
   topDoor: 0
   rightDoor: 0
   bottomDoor: 0
   leftDoor: 0
+  topDoorType: 0
+  rightDoorType: 0
+  bottomDoorType: 0
+  leftDoorType: 0

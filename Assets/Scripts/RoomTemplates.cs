@@ -19,19 +19,23 @@ public class RoomTemplates : MonoBehaviour
     public List<GameObject> rooms;
 
     public float waitTime;
-    public bool spawnedBoss;
+    private bool spawnedBoss;
     public GameObject boss;
     public GameObject spawn;
 
+    void Start()
+    {
+        spawnedBoss = false;
+    }
 
     void Update()
     {
-        if(waitTime <= 0 && spawnedBoss == false)
+        if(waitTime <= 0 && !spawnedBoss)
         {
             Instantiate(boss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
             Instantiate(spawn, rooms[0].transform.position, Quaternion.identity);
             Debug.Log("Boss Spawned!");
-            spawnedBoss = true;
+            spawnedBoss = !spawnedBoss;
 
         } else
         {
