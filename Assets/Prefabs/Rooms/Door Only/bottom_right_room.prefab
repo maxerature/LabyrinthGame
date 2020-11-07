@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6204735509269059910}
   - component: {fileID: -2582696808858987060}
+  - component: {fileID: -2582837922388041050}
   m_Layer: 0
   m_Name: bottom_right_room
   m_TagString: Untagged
@@ -46,6 +47,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22dbbfc1233e5e7469f32f85267c6d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2582837922388041050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861514406264549014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c80ccc14f5e4b469d8517c10b2a596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topDoor: 0
+  rightDoor: 1
+  bottomDoor: 1
+  leftDoor: 0
 --- !u!1 &3560407365047089794
 GameObject:
   m_ObjectHideFlags: 0
