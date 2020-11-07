@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-
     public float moveSpeed = 10f;
-    public Animator animation;
+    //public Animator animation;
+    public float health;
+    public float range;
+    public float damage;
+    public float knockback;
+    public float invincibilityTime;
 
     private Rigidbody2D rb;
+
+    private bool invincible = false;
+    public float invincibilityTimeRemaining;
+
     Camera viewCamera;
 
     [SerializeField] private FieldOfView fieldOfView;
+
 
 
     // Start is called before the first frame update
@@ -24,7 +32,7 @@ public class Player : MonoBehaviour
 
 
 
-        animation = GetComponent<Animator>();
+        //animation = GetComponent<Animator>();
 
         if (rb == null)
         {
@@ -35,8 +43,12 @@ public class Player : MonoBehaviour
     }
 
         
-
     void Update() {
+        if(health <= 0)
+        {
+            Destroy(this);
+        }
+
         Vector3 targetPosition = GetMouseWorldPosition();
         Vector3 aimDir = (targetPosition - transform.position).normalized;
 
@@ -49,39 +61,37 @@ public class Player : MonoBehaviour
         fieldOfView.SetOrigin(transform.position);
 
 
-
-
-        //play animation of movement input
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetMouseButtonDown(0))
         {
-            animation.SetFloat("horizontal", -1);
-            animation.SetBool("isMoving", true);
-            animation.SetFloat("lastInput", -1);
-            //animation.SetFloat("LastMove", -1);
-            //animation.SetBool("notMoving", false);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            animation.SetFloat("horizontal", 1);
-            animation.SetBool("isMoving", true);
-            animation.SetFloat("lastInput", 1);
-            //animation.SetFloat("LastMove", 1);
-        }
 
-        if (Input.GetKey(KeyCode.W)) 
-        {
-            animation.SetFloat("vertical", 1);
-            animation.SetBool("isMoving", true);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, aimDir, range, 1 << LayerMask.NameToLayer("Targets"));
+            if (hit.collider != null)
+            {
+                Debug.Log(hit.collider);
+                GameObject other = hit.collider.gameObject;
+                enemyAI otherScript = other.GetComponent<enemyAI>();
+                Debug.Log(other);
+                if (otherScript != null)
+                {
+                    otherScript.onTakeDamage(damage, knockback);
+                }
+                else
+                    Debug.Log("no component");
+            }
+            else
+            {
+                Debug.Log("nothing hit");
+            }
         }
 
-        if (!Input.anyKey)
+        if (invincible)
         {
-            animation.SetFloat("horizontal", 0);
-            animation.SetBool("isMoving", false);
+            invincibilityTimeRemaining -= Time.deltaTime;
+            if (invincibilityTimeRemaining <= 0)
+                invincible = false;
         }
-        
-        //animation.SetFloat("vertical", Input.GetAxisRaw("Vertical"));
     }
+
 
     void FixedUpdate()
     {
@@ -99,8 +109,8 @@ public class Player : MonoBehaviour
             rb.AddForce(directionOfMovement);
 
         }
-
     }
+
 
     public static Vector3 GetMouseWorldPosition()
     {
@@ -120,5 +130,29 @@ public class Player : MonoBehaviour
     {
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
         return worldPosition;
+    }
+
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!invincible)
+        {
+            Vector2 kb = new Vector2(0,0);
+            if (col.gameObject.tag == "Enemy")
+            {
+                enemyAI otherScript = col.gameObject.GetComponent<enemyAI>();
+                health -= otherScript.attackPower;
+                kb = (col.gameObject.transform.position - transform.position).normalized * 10;
+            }
+            else if(col.gameObject.tag == "EnemyProjectile")
+            {
+                ProjectileData otherScript = col.gameObject.GetComponent<ProjectileData>();
+                health -= otherScript.damage;
+                kb = (col.gameObject.transform.position - transform.position).normalized * 1;
+            }
+            rb.AddForce(-kb, ForceMode2D.Impulse);
+            invincible = true;
+            invincibilityTimeRemaining = invincibilityTime;
+        }
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Rooms
   - Destroyer
   - Light Obstacle
+  - Enemy
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - 
   - Targets
   - Obstacles
-  - 
+  - Collisons
   - 
   - 
   - 
