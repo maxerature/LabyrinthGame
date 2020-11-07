@@ -25,7 +25,11 @@ public class DoorCheck : MonoBehaviour
     private float waitTime = 15f;
     private float deathTime = 5f;
 
+    public List<GameObject> enemies;
+
     private Collider2D collide;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -111,6 +115,7 @@ public class DoorCheck : MonoBehaviour
             door.transform.position = pos;
             leftDoorSpawned = true;
         }
+        Destroy(collide);
     }
 
 

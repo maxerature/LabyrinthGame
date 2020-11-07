@@ -26,11 +26,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         viewCamera = Camera.main;
 
-
+        viewCamera.enabled = false;
 
         //animation = GetComponent<Animator>();
 
@@ -40,8 +41,16 @@ public class Player : MonoBehaviour
         }
         rb.drag = 5;
         rb.gravityScale = 0;
+
+        Invoke("levelSetup", 10f);
     }
 
+    void levelSetup()
+    {
+        Vector3 pos = new Vector3(0, 0, 0);
+        transform.position = pos;
+        viewCamera.enabled = true;
+    }
         
     void Update() {
         if(health <= 0)
