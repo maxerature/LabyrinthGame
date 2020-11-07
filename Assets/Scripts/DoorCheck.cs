@@ -34,115 +34,6 @@ public class DoorCheck : MonoBehaviour
         Invoke("spawnDoors", 8f);
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (waitTime > 0)
-    //        waitTime -= Time.deltaTime;
-    //    else
-    //    {
-    //        if(deathTime > 0)
-    //        {
-    //            deathTime -= Time.deltaTime;
-    //        }
-    //        else
-    //        {
-    //            Destroy(collide);
-    //        }
-    //        if(topDoor)
-    //        {
-    //            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + 20), 0.25f);
-    //            if (roomCollider == null)
-    //                topDoorType = 0;
-    //            else
-    //            {
-    //                GameObject room = roomCollider.gameObject;
-    //                DoorCheck otherDoor = room.GetComponent<DoorCheck>();
-    //                if (otherDoor.bottomDoor && !topDoorSpawned)
-    //                {
-    //                    topDoorType = 1;
-    //                    GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
-    //                    door.transform.parent = gameObject.transform;
-    //                    Vector3 pos = door.transform.position;
-    //                    pos.y += 8;
-    //                    door.transform.position = pos;
-    //                    topDoorSpawned = true;
-    //                }
-    //                else
-    //                    topDoorType = 2;
-    //            }
-    //        }
-    //        if (rightDoor)
-    //        {
-    //            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + 20), 0.25f);
-    //            if (roomCollider == null)
-    //                rightDoorType = 0;
-    //            else
-    //            {
-    //                GameObject room = roomCollider.gameObject;
-    //                DoorCheck otherDoor = room.GetComponent<DoorCheck>();
-    //                if (otherDoor.leftDoor && !rightDoorSpawned)
-    //                { 
-    //                    rightDoorType = 1;
-    //                    GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
-    //                    door.transform.parent = gameObject.transform;
-    //                    Vector3 pos = door.transform.position;
-    //                    pos.x += 8;
-    //                    door.transform.position = pos;
-    //                    rightDoorSpawned = true;
-    //                }
-    //                else
-    //                    rightDoorType = 2;
-    //            }
-    //        }
-    //        if (bottomDoor)
-    //        {
-    //            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + 20), 0.25f);
-    //            if (roomCollider == null)
-    //                bottomDoorType = 0;
-    //            else
-    //            {
-    //                GameObject room = roomCollider.gameObject;
-    //                DoorCheck otherDoor = room.GetComponent<DoorCheck>();
-    //                if (otherDoor.topDoor && !bottomDoorSpawned)
-    //                {
-    //                    bottomDoorType = 1;
-    //                    GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
-    //                    door.transform.parent = gameObject.transform;
-    //                    Vector3 pos = door.transform.position;
-    //                    pos.y -= 8;
-    //                    door.transform.position = pos;
-    //                    bottomDoorSpawned = true;
-    //                }
-    //                else
-    //                    bottomDoorType = 2;
-    //            }
-    //        }
-    //        if (leftDoor)
-    //        {
-    //            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + 20), 0.25f);
-    //            if (roomCollider == null)
-    //                leftDoorType = 0;
-    //            else
-    //            {
-    //                GameObject room = roomCollider.gameObject;
-    //                DoorCheck otherDoor = room.GetComponent<DoorCheck>();
-    //                if (otherDoor.rightDoor && !leftDoorSpawned)
-    //                {
-    //                    leftDoorType = 1;
-    //                    GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
-    //                    door.transform.parent = gameObject.transform;
-    //                    Vector3 pos = door.transform.position;
-    //                    pos.x -= 8;
-    //                    door.transform.position = pos;
-    //                    leftDoorSpawned = true;
-    //                }
-    //                else
-    //                    leftDoorType = 2;
-    //            }
-    //        }
-    //    }
-    //}
     void spawnDoors()
     {
         if(topDoorType == 1)
@@ -166,7 +57,7 @@ public class DoorCheck : MonoBehaviour
 
         if(rightDoorType == 1)
         {
-            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
+            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, 90));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.x += 8;
@@ -175,7 +66,7 @@ public class DoorCheck : MonoBehaviour
         }
         else if (rightDoorType == 2)
         {
-            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.identity);
+            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, 90));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.x += 8;
@@ -185,7 +76,7 @@ public class DoorCheck : MonoBehaviour
 
         if (bottomDoorType == 1)
         {
-            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
+            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, 180));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.y -= 8;
@@ -194,7 +85,7 @@ public class DoorCheck : MonoBehaviour
         }
         else if (bottomDoorType == 2)
         {
-            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.identity);
+            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, 180));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.y -= 8;
@@ -204,7 +95,7 @@ public class DoorCheck : MonoBehaviour
 
         if (leftDoorType == 1)
         {
-            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
+            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, 270));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.x -= 8;
@@ -213,7 +104,7 @@ public class DoorCheck : MonoBehaviour
         }
         else if (leftDoorType == 2)
         {
-            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.identity);
+            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, 270));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.x -= 8;
@@ -244,7 +135,7 @@ public class DoorCheck : MonoBehaviour
         }
         if (rightDoor)
         {
-            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + 20), 0.25f);
+            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x + 20, transform.position.y), 0.25f);
             if (roomCollider == null)
                 rightDoorType = 0;
             else
@@ -261,7 +152,7 @@ public class DoorCheck : MonoBehaviour
         }
         if (bottomDoor)
         {
-            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + 20), 0.25f);
+            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 20), 0.25f);
             if (roomCollider == null)
                 bottomDoorType = 0;
             else
@@ -278,7 +169,7 @@ public class DoorCheck : MonoBehaviour
         }
         if (leftDoor)
         {
-            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + 20), 0.25f);
+            Collider2D roomCollider = Physics2D.OverlapCircle(new Vector2(transform.position.x - 20, transform.position.y), 0.25f);
             if (roomCollider == null)
                 leftDoorType = 0;
             else
