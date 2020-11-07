@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     private bool invincible = false;
     public float invincibilityTimeRemaining;
+    public GameObject bulletPrefab;
 
     Camera viewCamera;
 
@@ -72,6 +73,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
+            proj.direction = (aimDir).normalized;
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, aimDir, range, 1 << LayerMask.NameToLayer("Targets"));
             if (hit.collider != null)
