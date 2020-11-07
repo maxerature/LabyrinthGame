@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
 
     public float moveSpeed = 10f;
-    public Animator animation;
+    public Animator playerAnimation;
 
     private Rigidbody2D rb;
     Camera viewCamera;
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
 
 
-        animation = GetComponent<Animator>();
+        playerAnimation = GetComponent<Animator>();
 
         if (rb == null)
         {
@@ -43,44 +43,19 @@ public class Player : MonoBehaviour
         Vector3 vectorToTarget = targetPosition - transform.position;
         Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
         Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-        transform.rotation = targetRotation;
+        //transform.rotation = targetRotation;
 
         fieldOfView.SetAimDirection(aimDir);
         fieldOfView.SetOrigin(transform.position);
 
+        //change direction player is facing
+        playerAnimation.SetFloat("MousePositionHoriz", aimDir.x);
+        playerAnimation.SetFloat("MousePositionVert", aimDir.y);
 
+        //play animation of movement direction
+        playerAnimation.SetFloat("MoveHorizontal", Input.GetAxis("Horizontal"));
+        playerAnimation.SetFloat("MoveVertical", Input.GetAxis("Vertical"));
 
-
-        //play animation of movement input
-        if (Input.GetKey(KeyCode.A))
-        {
-            animation.SetFloat("horizontal", -1);
-            animation.SetBool("isMoving", true);
-            animation.SetFloat("lastInput", -1);
-            //animation.SetFloat("LastMove", -1);
-            //animation.SetBool("notMoving", false);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            animation.SetFloat("horizontal", 1);
-            animation.SetBool("isMoving", true);
-            animation.SetFloat("lastInput", 1);
-            //animation.SetFloat("LastMove", 1);
-        }
-
-        if (Input.GetKey(KeyCode.W)) 
-        {
-            animation.SetFloat("vertical", 1);
-            animation.SetBool("isMoving", true);
-        }
-
-        if (!Input.anyKey)
-        {
-            animation.SetFloat("horizontal", 0);
-            animation.SetBool("isMoving", false);
-        }
-        
-        //animation.SetFloat("vertical", Input.GetAxisRaw("Vertical"));
     }
 
     void FixedUpdate()
