@@ -22,9 +22,9 @@ TagManager:
   - Targets
   - Obstacles
   - Collisons
-  - 
-  - 
-  - 
+  - Mask
+  - BehindMask
+  - Black
   - 
   - 
   - 

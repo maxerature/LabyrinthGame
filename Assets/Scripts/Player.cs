@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         rb.drag = 5;
         rb.gravityScale = 0;
 
-        Invoke("levelSetup", 10f);
+        Invoke("levelSetup", 7f);
     }
 
     void levelSetup()

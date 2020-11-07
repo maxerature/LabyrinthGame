@@ -35,7 +35,7 @@ public class DoorCheck : MonoBehaviour
     {
         collide = gameObject.GetComponent<Collider2D>();
         Invoke("checkDoors", 6f);
-        Invoke("spawnDoors", 8f);
+        Invoke("spawnDoors", 6.5f);
     }
 
     void spawnDoors()

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4822626098514464417}
   - component: {fileID: 1357694345845311760}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LockedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3415136433977880203}
   - component: {fileID: 1740741093304121067}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Metal_Double_Door_2x2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

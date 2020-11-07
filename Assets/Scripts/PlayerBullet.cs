@@ -17,7 +17,7 @@ public class PlayerBullet : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         Invoke("die", 0.5f);
         direction = direction.normalized;
-        transform.Rotate(direction.normalized);
+        transform.Rotate(direction);
     }
 
     void die()
