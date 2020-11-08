@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: fieldOfView
       value: 
       objectReference: {fileID: 43783331}
+    - target: {fileID: 4063067950525832548, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
 --- !u!1 &1676768739

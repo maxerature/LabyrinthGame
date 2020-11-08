@@ -37,21 +37,25 @@ public class DoorCheck : MonoBehaviour
     public GameObject bottomRoom;
     public GameObject leftRoom;
 
+    private bool opened;
+
 
     // Start is called before the first frame update
     void Start()
     {
         collide = gameObject.GetComponent<Collider2D>();
+        opened = false;
         Invoke("checkDoors", 6f);
         Invoke("spawnDoors", 6.5f);
     }
 
     void Update()
     {
-        if(enemies.Count == 0)
+        if(enemies.Count == 0  && !opened)
         {
             for(int i=0; i<unlockedDoors.Count; i++)
             {
+                opened = true;
                 GameObject door = unlockedDoors[i];
                 GameObject openDoor = Instantiate(openDoorPrefab, door.transform.position, door.transform.rotation);
                 unlockedDoors[i] = openDoor;
