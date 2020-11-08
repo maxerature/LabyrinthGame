@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour
     
     public void LoadMenu()
     {
+        MusicManager.instance.PlayTrack(MusicManager.Tracks.Menu);
         SceneManager.LoadScene(0);
     }
     public void LoadControls()

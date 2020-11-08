@@ -13,7 +13,6 @@ public class MenuSounds : MonoBehaviour
         // audioSource.pitch = Random.Range(0.7f, 1.1f);
         audioSource.PlayOneShot(menuSelect);
         //float after playoneshot to scale volume from 0 to 1
-
     }
     public void PlayStart()
     {
