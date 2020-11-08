@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  maxHealth: 20
   health: 20
   range: 5
   damage: 1
@@ -55,6 +56,7 @@ MonoBehaviour:
   invincibilityTime: 0
   invincibilityTimeRemaining: 0
   bulletPrefab: {fileID: 731769867467873371, guid: 6a2cdc8c36d62d54ba166e413615e7ec, type: 3}
+  healthBar: {fileID: 0}
   fieldOfView: {fileID: 0}
 --- !u!50 &4063067949989035997
 Rigidbody2D:

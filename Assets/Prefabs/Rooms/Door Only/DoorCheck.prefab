@@ -63,6 +63,13 @@ MonoBehaviour:
   lockedDoor: {fileID: 1527602618668521068, guid: ab1160e9f2862854e9349726df5b8485, type: 3}
   closedDoor: {fileID: 2919128041290466116, guid: 02b827f74d755fe46a84096559a431d0, type: 3}
   openDoorPrefab: {fileID: 2925342100437498734, guid: c1cbfdae936fed346a326c7309572e90, type: 3}
+  enemyTypes:
+  - {fileID: 6710875609824945713, guid: f0da39e1a02250941be9f947578f0dba, type: 3}
+  - {fileID: 6710875609824945713, guid: d449758a8c999b043bb80c4db10553ed, type: 3}
+  - {fileID: 6710875609824945713, guid: a773a528365cda44a8c385fc8868ea5d, type: 3}
+  - {fileID: 6710875609824945713, guid: 14f5aa81439e69f4d9af52ec9c550670, type: 3}
+  - {fileID: 6710875609824945713, guid: b55c62f5f02fc544bb75d209def46699, type: 3}
+  - {fileID: 6710875609824945713, guid: 0d944f731a6271a478828e6b496d9310, type: 3}
   topDoor: 0
   rightDoor: 0
   bottomDoor: 0
@@ -78,3 +85,8 @@ MonoBehaviour:
   enemies: []
   doors: []
   unlockedDoors: []
+  topRoom: {fileID: 0}
+  rightRoom: {fileID: 0}
+  bottomRoom: {fileID: 0}
+  leftRoom: {fileID: 0}
+  safeRoom: 0
