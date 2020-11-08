@@ -180,7 +180,7 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 3
   attackPower: 5
-  health: 10
+  health: 3
   ranged: 1
   attemptedOuterDistance: 5
   attemptedInnerDistance: 2

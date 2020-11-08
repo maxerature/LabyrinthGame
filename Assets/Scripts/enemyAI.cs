@@ -24,7 +24,8 @@ public class enemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject player = GameObject.FindWithTag("Player");
+        target = player.transform;
     }
 
     // Update is called once per frame
@@ -58,11 +59,6 @@ public class enemyAI : MonoBehaviour
                     attackCooldownRemaining -= Time.deltaTime;
             }
         }
-
-        if(health <= 0)
-        {
-            Destroy(this);
-        }
     }
 
     public void onTakeDamage(float damage, float knockback)
@@ -70,6 +66,16 @@ public class enemyAI : MonoBehaviour
         health -= damage;
         Debug.Log(health);
         transform.Translate(new Vector2(-knockback,0));
+
+        if(health <= 0)
+        {
+            GameObject roomControl = transform.parent.transform.gameObject;
+            DoorCheck dc = roomControl.GetComponent<DoorCheck>();
+
+            Destroy(gameObject);
+            dc.enemyKilled();
+            dc.enemyCount--;
+        }
     }
 
     public void hit(Vector2 knockback)

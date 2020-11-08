@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 10f;
     //public Animator animation;
+    public float maxHealth;
     public float health;
     public float range;
     public float damage;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
 
     Camera viewCamera;
 
+    public GameObject healthBar;
     [SerializeField] private FieldOfView fieldOfView;
 
 
@@ -43,11 +45,13 @@ public class Player : MonoBehaviour
         rb.drag = 5;
         rb.gravityScale = 0;
 
+        //gameObject.SetActive(false);
         Invoke("levelSetup", 7f);
     }
 
     void levelSetup()
     {
+        //gameObject.SetActive(true);
         Vector3 pos = new Vector3(0, 0, 0);
         transform.position = pos;
         viewCamera.enabled = true;
@@ -148,24 +152,31 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (!invincible)
+        if (col.gameObject.layer == 8)
         {
-            Vector2 kb = new Vector2(0,0);
-            if (col.gameObject.tag == "Enemy")
+            if (!invincible)
             {
-                enemyAI otherScript = col.gameObject.GetComponent<enemyAI>();
-                health -= otherScript.attackPower;
-                kb = (col.gameObject.transform.position - transform.position).normalized * 10;
+                Vector2 kb = new Vector2(0, 0);
+                if (col.gameObject.tag == "Enemy")
+                {
+                    enemyAI otherScript = col.gameObject.GetComponent<enemyAI>();
+                    health -= otherScript.attackPower;
+                    kb = (col.gameObject.transform.position - transform.position).normalized * 10;
+                }
+                else if (col.gameObject.tag == "EnemyProjectile")
+                {
+                    ProjectileData otherScript = col.gameObject.GetComponent<ProjectileData>();
+                    health -= otherScript.damage;
+                    kb = (col.gameObject.transform.position - transform.position).normalized * 1;
+                }
+                rb.AddForce(-kb, ForceMode2D.Impulse);
+                invincible = true;
+                invincibilityTimeRemaining = invincibilityTime;
+
+                float healthPerc = health / maxHealth;
+                HealthBar hbscript = healthBar.GetComponent<HealthBar>();
+                hbscript.SetSize(healthPerc);
             }
-            else if(col.gameObject.tag == "EnemyProjectile")
-            {
-                ProjectileData otherScript = col.gameObject.GetComponent<ProjectileData>();
-                health -= otherScript.damage;
-                kb = (col.gameObject.transform.position - transform.position).normalized * 1;
-            }
-            rb.AddForce(-kb, ForceMode2D.Impulse);
-            invincible = true;
-            invincibilityTimeRemaining = invincibilityTime;
         }
     }
 }

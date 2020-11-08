@@ -45,7 +45,13 @@ public class FieldOfView : MonoBehaviour
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
+        gameObject.SetActive(false);
+        Invoke("levelSetup", 7.5f);
+    }
 
+    void levelSetup()
+    {
+        gameObject.SetActive(true);
     }
 
     void Update()

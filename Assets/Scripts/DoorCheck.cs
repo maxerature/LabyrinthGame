@@ -42,6 +42,8 @@ public class DoorCheck : MonoBehaviour
     private bool opened;
     public bool safeRoom;
 
+    public int enemyCount;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +57,8 @@ public class DoorCheck : MonoBehaviour
 
     void Update()
     {
-        if(enemies.Count == 0  && !opened)
+        
+        if(enemyCount == 0  && !opened)
         {
             for(int i=0; i<unlockedDoors.Count; i++)
             {
@@ -73,19 +76,30 @@ public class DoorCheck : MonoBehaviour
     {
         if(!safeRoom)
         {
-            int enemyCount = Random.Range(2, 10);
+            enemyCount = Random.Range(2, 10);
             int randType;
 
             for(int i=0; i<enemyCount; i++)
             {
                 randType = Random.Range(0, enemyTypes.Length);
                 GameObject enemy = Instantiate(enemyTypes[randType], transform.position, Quaternion.identity);
+                enemy.transform.parent = gameObject.transform;
 
                 Vector3 pos = new Vector3(Random.Range(-6, 6), Random.Range(-6, 6), 0);
                 pos = enemy.transform.position + pos;
                 enemy.transform.position = pos;
-
                 enemies.Add(enemy);
+            }
+        }
+    }
+
+    public void enemyKilled()
+    {
+        for(int i=enemies.Count-1; i >= 0; i--)
+        {
+            if(enemies[i] == null)
+            {
+                enemies.RemoveAt(i);
             }
         }
     }
