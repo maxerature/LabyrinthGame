@@ -42,6 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: arm_back
+    uniqueID: 4244078585
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: pistol
+    uniqueID: 1492301113
+    locked: 0
+  - name: arm_front
+    uniqueID: 3317026927
     locked: 0

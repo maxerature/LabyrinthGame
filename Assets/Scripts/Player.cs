@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-
     public float moveSpeed = 10f;
     public Animator playerAnimation;
-
+    public Transform aim;
+ 
     private Rigidbody2D rb;
     Camera viewCamera;
 
@@ -22,7 +21,7 @@ public class Player : MonoBehaviour
 
         viewCamera = Camera.main;
 
-
+        aim = transform.Find("aim_right");
 
         playerAnimation = GetComponent<Animator>();
 
@@ -39,11 +38,12 @@ public class Player : MonoBehaviour
     void Update() {
         Vector3 targetPosition = GetMouseWorldPosition();
         Vector3 aimDir = (targetPosition - transform.position).normalized;
-
+        float rotationz = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         Vector3 vectorToTarget = targetPosition - transform.position;
         Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
         Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
         //transform.rotation = targetRotation;
+        aim.transform.rotation = targetRotation;
 
         fieldOfView.SetAimDirection(aimDir);
         fieldOfView.SetOrigin(transform.position);
@@ -53,8 +53,8 @@ public class Player : MonoBehaviour
         playerAnimation.SetFloat("MousePositionVert", aimDir.y);
 
         //play animation of movement direction
-        playerAnimation.SetFloat("MoveHorizontal", Input.GetAxis("Horizontal"));
-        playerAnimation.SetFloat("MoveVertical", Input.GetAxis("Vertical"));
+        //playerAnimation.SetFloat("MoveHorizontal", Input.GetAxis("Horizontal"));
+        //playerAnimation.SetFloat("MoveVertical", Input.GetAxis("Vertical"));
 
     }
 
