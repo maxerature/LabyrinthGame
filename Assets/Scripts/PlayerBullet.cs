@@ -16,8 +16,10 @@ public class PlayerBullet : MonoBehaviour
     { 
         rb = gameObject.GetComponent<Rigidbody2D>();
         Invoke("die", 0.5f);
-        direction = direction.normalized;
-        transform.Rotate(direction);
+
+        Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 1) * direction;
+        Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+        transform.rotation = targetRotation;
     }
 
     void die()
@@ -29,5 +31,10 @@ public class PlayerBullet : MonoBehaviour
     void Update()
     {
         rb.AddForce(direction * speed);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Destroy(gameObject);
     }
 }

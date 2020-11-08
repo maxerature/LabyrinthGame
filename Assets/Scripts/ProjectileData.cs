@@ -13,6 +13,7 @@ public class ProjectileData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb.AddForce(direction * speed, ForceMode2D.Impulse);
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 

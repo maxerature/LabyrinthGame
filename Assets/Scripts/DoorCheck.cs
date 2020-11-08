@@ -6,6 +6,7 @@ public class DoorCheck : MonoBehaviour
 {
     public GameObject lockedDoor;
     public GameObject closedDoor;
+    public GameObject openDoorPrefab;
     public bool topDoor;
     public bool rightDoor;
     public bool bottomDoor;
@@ -26,6 +27,8 @@ public class DoorCheck : MonoBehaviour
     private float deathTime = 5f;
 
     public List<GameObject> enemies;
+    public List<GameObject> doors;
+    public List<GameObject> unlockedDoors;
 
     private Collider2D collide;
 
@@ -38,6 +41,20 @@ public class DoorCheck : MonoBehaviour
         Invoke("spawnDoors", 6.5f);
     }
 
+    void Update()
+    {
+        if(enemies.Count == 0)
+        {
+            for(int i=0; i<unlockedDoors.Count; i++)
+            {
+                GameObject door = unlockedDoors[i];
+                GameObject openDoor = Instantiate(openDoorPrefab, door.transform.position, door.transform.rotation);
+                unlockedDoors[i] = openDoor;
+                Destroy(door);
+            }
+        }
+    }
+
     void spawnDoors()
     {
         if(topDoorType == 1)
@@ -48,6 +65,8 @@ public class DoorCheck : MonoBehaviour
             pos.y += 8;
             door.transform.position = pos;
             topDoorSpawned = true;
+            doors.Add(door);
+            unlockedDoors.Add(door);
         }
         else if(topDoorType == 2)
         {
@@ -57,25 +76,29 @@ public class DoorCheck : MonoBehaviour
             pos.y += 8;
             door.transform.position = pos;
             topDoorSpawned = true;
+            doors.Add(door);
         }
 
         if(rightDoorType == 1)
         {
-            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, 90));
+            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, -90));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.x += 8;
             door.transform.position = pos;
             rightDoorSpawned = true;
+            doors.Add(door);
+            unlockedDoors.Add(door);
         }
         else if (rightDoorType == 2)
         {
-            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, 90));
+            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, -90));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.x += 8;
             door.transform.position = pos;
             rightDoorSpawned = true;
+            doors.Add(door);
         }
 
         if (bottomDoorType == 1)
@@ -86,6 +109,8 @@ public class DoorCheck : MonoBehaviour
             pos.y -= 8;
             door.transform.position = pos;
             bottomDoorSpawned = true;
+            doors.Add(door);
+            unlockedDoors.Add(door);
         }
         else if (bottomDoorType == 2)
         {
@@ -95,25 +120,29 @@ public class DoorCheck : MonoBehaviour
             pos.y -= 8;
             door.transform.position = pos;
             bottomDoorSpawned = true;
+            doors.Add(door);
         }
 
         if (leftDoorType == 1)
         {
-            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, 270));
+            GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, -270));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.x -= 8;
             door.transform.position = pos;
             leftDoorSpawned = true;
+            doors.Add(door);
+            unlockedDoors.Add(door);
         }
         else if (leftDoorType == 2)
         {
-            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, 270));
+            GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, -270));
             door.transform.parent = gameObject.transform;
             Vector3 pos = door.transform.position;
             pos.x -= 8;
             door.transform.position = pos;
             leftDoorSpawned = true;
+            doors.Add(door);
         }
         Destroy(collide);
     }
