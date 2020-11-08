@@ -32,6 +32,11 @@ public class DoorCheck : MonoBehaviour
 
     private Collider2D collide;
 
+    public GameObject topRoom;
+    public GameObject rightRoom;
+    public GameObject bottomRoom;
+    public GameObject leftRoom;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +55,7 @@ public class DoorCheck : MonoBehaviour
                 GameObject door = unlockedDoors[i];
                 GameObject openDoor = Instantiate(openDoorPrefab, door.transform.position, door.transform.rotation);
                 unlockedDoors[i] = openDoor;
+                openDoor.transform.parent = gameObject.transform;
                 Destroy(door);
             }
         }
@@ -158,6 +164,7 @@ public class DoorCheck : MonoBehaviour
             else
             {
                 GameObject room = roomCollider.gameObject;
+                topRoom = room.transform.parent.transform.gameObject;
                 DoorCheck otherDoor = room.GetComponent<DoorCheck>();
                 if (otherDoor.bottomDoor)
                 {
@@ -175,6 +182,7 @@ public class DoorCheck : MonoBehaviour
             else
             {
                 GameObject room = roomCollider.gameObject;
+                rightRoom = room.transform.parent.transform.gameObject;
                 DoorCheck otherDoor = room.GetComponent<DoorCheck>();
                 if (otherDoor.leftDoor)
                 {
@@ -192,6 +200,7 @@ public class DoorCheck : MonoBehaviour
             else
             {
                 GameObject room = roomCollider.gameObject;
+                bottomRoom = room.transform.parent.transform.gameObject;
                 DoorCheck otherDoor = room.GetComponent<DoorCheck>();
                 if (otherDoor.topDoor)
                 {
@@ -209,6 +218,7 @@ public class DoorCheck : MonoBehaviour
             else
             {
                 GameObject room = roomCollider.gameObject;
+                leftRoom = room.transform.parent.transform.gameObject;
                 DoorCheck otherDoor = room.GetComponent<DoorCheck>();
                 if (otherDoor.rightDoor)
                 {

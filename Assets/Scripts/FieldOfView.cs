@@ -48,6 +48,11 @@ public class FieldOfView : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        mesh.RecalculateBounds();
+    }
+
     void LateUpdate() {
 
         float angle = startingAngle;
@@ -93,5 +98,6 @@ public class FieldOfView : MonoBehaviour
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = tris;
+        mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
     }
 }

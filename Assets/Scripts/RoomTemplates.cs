@@ -26,6 +26,15 @@ public class RoomTemplates : MonoBehaviour
     void Start()
     {
         spawnedBoss = false;
+        Invoke("Deactivate", 7f);
+    }
+
+    void Deactivate()
+    {
+        for(int i=1; i<rooms.Count; i++)
+        {
+            rooms[i].SetActive(false);
+        }
     }
 
     void Update()
