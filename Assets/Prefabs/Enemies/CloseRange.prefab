@@ -187,7 +187,7 @@ MonoBehaviour:
   firingOuterRange: 5
   firingInnerRange: 3
   projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
-  attackCooldown: 1
+  attackCooldown: 2
   attackCooldownRemaining: 0
 --- !u!50 &6710875609824945724
 Rigidbody2D:

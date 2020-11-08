@@ -59,12 +59,12 @@ public class enemyAI : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, target.position) > attemptedOuterDistance)
         {
-            rb.AddRelativeForce(transform.right * 0.5f*moveSpeed);
+            rb.AddRelativeForce(transform.right * moveSpeed);
             //transform.Translate(new Vector3(moveSpeed * Time.deltaTime, 0, 0));
         }
         else if (Vector3.Distance(transform.position, target.position) < attemptedInnerDistance)
         {
-            rb.AddRelativeForce(transform.right * -0.5f*moveSpeed);
+            rb.AddRelativeForce(transform.right * -moveSpeed);
             //transform.Translate(new Vector3(-moveSpeed * Time.deltaTime, 0, 0));
         }
     }
