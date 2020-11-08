@@ -13,14 +13,13 @@ public class ProjectileData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.AddForce(direction * speed, ForceMode2D.Impulse);
         rb = gameObject.GetComponent<Rigidbody2D>();
+        rb.AddForce(direction * speed, ForceMode2D.Impulse);
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        rb.AddForce(direction * speed);
         if (lifeSpan >= 0)
         {
             lifeSpan -= Time.deltaTime;
@@ -29,5 +28,11 @@ public class ProjectileData : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        rb.AddForce(direction * speed);
     }
 }

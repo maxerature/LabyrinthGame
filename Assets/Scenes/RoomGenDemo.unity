@@ -635,6 +635,10 @@ PrefabInstance:
       propertyPath: fieldOfView
       value: 
       objectReference: {fileID: 43783331}
+    - target: {fileID: 4063067949989035999, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 218411311}
     - target: {fileID: 4063067950525832548, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
       propertyPath: m_SortingOrder
       value: 100

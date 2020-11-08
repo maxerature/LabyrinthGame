@@ -26,6 +26,7 @@ public class enemyAI : MonoBehaviour
     {
         GameObject player = GameObject.FindWithTag("Player");
         target = player.transform;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -34,14 +35,7 @@ public class enemyAI : MonoBehaviour
         transform.LookAt(target.position);
         transform.Rotate(new Vector3(0, -90, 0), Space.Self);
 
-        if (Vector3.Distance(transform.position, target.position) > attemptedOuterDistance)
-        {
-            transform.Translate(new Vector3(moveSpeed * Time.deltaTime, 0, 0));
-        }
-        else if(Vector3.Distance(transform.position, target.position) < attemptedInnerDistance)
-        {
-            transform.Translate(new Vector3(-moveSpeed * Time.deltaTime, 0, 0));
-        }
+        
 
         if(ranged)
         {
@@ -58,6 +52,20 @@ public class enemyAI : MonoBehaviour
                 else 
                     attackCooldownRemaining -= Time.deltaTime;
             }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (Vector3.Distance(transform.position, target.position) > attemptedOuterDistance)
+        {
+            rb.AddRelativeForce(transform.right * 0.5f*moveSpeed);
+            //transform.Translate(new Vector3(moveSpeed * Time.deltaTime, 0, 0));
+        }
+        else if (Vector3.Distance(transform.position, target.position) < attemptedInnerDistance)
+        {
+            rb.AddRelativeForce(transform.right * -0.5f*moveSpeed);
+            //transform.Translate(new Vector3(-moveSpeed * Time.deltaTime, 0, 0));
         }
     }
 

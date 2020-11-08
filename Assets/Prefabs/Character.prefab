@@ -54,6 +54,8 @@ MonoBehaviour:
   damage: 1
   knockback: 0.25
   invincibilityTime: 0
+  regenRate: 30
+  regenTimer: 30
   invincibilityTimeRemaining: 0
   bulletPrefab: {fileID: 731769867467873371, guid: 6a2cdc8c36d62d54ba166e413615e7ec, type: 3}
   healthBar: {fileID: 0}

@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     public float knockback;
     public float invincibilityTime;
 
+    public float regenRate;
+    public float regenTimer;
+
     private Rigidbody2D rb;
 
     private bool invincible = false;
@@ -58,6 +61,19 @@ public class Player : MonoBehaviour
     }
         
     void Update() {
+        if(health < maxHealth)
+        {
+            regenTimer -= Time.deltaTime;
+            if(regenTimer <= 0)
+            {
+                health += 1;
+                float healthPerc = health / maxHealth;
+                HealthBar hbscript = healthBar.GetComponent<HealthBar>();
+                hbscript.SetSize(healthPerc);
+
+                regenTimer = regenRate;
+            }
+        }
         if(health <= 0)
         {
             Destroy(this);
