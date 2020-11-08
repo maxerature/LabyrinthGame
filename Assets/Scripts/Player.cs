@@ -6,8 +6,8 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public Animator playerAnimation;
-    public Transform aim;
- 
+    public Transform Arm;
+    public GameObject player;
     private Rigidbody2D rb;
     Camera viewCamera;
 
@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         viewCamera = Camera.main;
-
-        aim = transform.Find("aim_right");
 
         playerAnimation = GetComponent<Animator>();
 
@@ -36,26 +34,49 @@ public class Player : MonoBehaviour
         
 
     void Update() {
+
+        //rotate arm and player to mouse
         Vector3 targetPosition = GetMouseWorldPosition();
         Vector3 aimDir = (targetPosition - transform.position).normalized;
-        float rotationz = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         Vector3 vectorToTarget = targetPosition - transform.position;
         Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
         Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
         //transform.rotation = targetRotation;
-        aim.transform.rotation = targetRotation;
+        Arm.transform.rotation = targetRotation;
+
+        //flip arm around if facing opposite direction
+        float z = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        if(z < -90 || z > 90)
+        {
+            if(player.transform.eulerAngles.y == 0)
+            {
+                Arm.transform.localRotation = Quaternion.Euler(180, 0, -z);
+            }
+            else if(player.transform.eulerAngles.y == 180)
+            {
+                Arm.transform.localRotation = Quaternion.Euler(180, 180, -z);
+            }
+        }
+ 
 
         fieldOfView.SetAimDirection(aimDir);
         fieldOfView.SetOrigin(transform.position);
 
-        //change direction player is facing
+        //change animation direction player is facing
         playerAnimation.SetFloat("MousePositionHoriz", aimDir.x);
         playerAnimation.SetFloat("MousePositionVert", aimDir.y);
 
         //play animation of movement direction
-        //playerAnimation.SetFloat("MoveHorizontal", Input.GetAxis("Horizontal"));
-        //playerAnimation.SetFloat("MoveVertical", Input.GetAxis("Vertical"));
-
+        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            playerAnimation.SetBool("isMoving", true);
+            playerAnimation.SetFloat("MoveHorizontal", Input.GetAxis("Horizontal"));
+            playerAnimation.SetFloat("MoveVertical", Input.GetAxis("Vertical"));
+        }
+        else
+        {
+            playerAnimation.SetBool("isMoving", false);
+        }
     }
 
     void FixedUpdate()

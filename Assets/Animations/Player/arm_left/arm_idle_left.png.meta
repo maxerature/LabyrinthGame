@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: ed85efdccf37a67468f7084bb9ee5d3e
+guid: db35a1b4636077e4ebd07eb13052cfb7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2006570803361742672
-    second: arm_left_back
+      213: 2913605992369481150
+    second: arm_idle_left_0
   - first:
-      213: 6245318490896018626
-    second: arm_left_front
+      213: -7480682974773567689
+    second: arm_idle_left_1
+  - first:
+      213: -453420830853186411
+    second: arm_idle_left_2
+  - first:
+      213: 7108322597166640217
+    second: arm_idle_left_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -95,7 +101,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arm_left_back
+      name: arm_idle_left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -103,20 +109,20 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b004f05c7a3724e0800000000000000
-      internalID: -2006570803361742672
+      spriteID: eb5e1ae86353f6820800000000000000
+      internalID: 2913605992369481150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arm_left_front
+      name: arm_idle_left_1
       rect:
         serializedVersion: 2
         x: 311
@@ -124,14 +130,56 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cc290f0414dba650800000000000000
-      internalID: 6245318490896018626
+      spriteID: 73f1f4308764f2890800000000000000
+      internalID: -7480682974773567689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arm_idle_left_2
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 0
+        width: 311
+        height: 604
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59cbb3b182025b9f0800000000000000
+      internalID: -453420830853186411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arm_idle_left_3
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 0
+        width: 311
+        height: 604
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ceff89db5d5a260800000000000000
+      internalID: 7108322597166640217
       vertices: []
       indices: 
       edges: []

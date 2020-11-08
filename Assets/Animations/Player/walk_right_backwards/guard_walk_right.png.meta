@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 223223f6ae06d164fb8609b0e2bf643f
+guid: 4df85a92599c9f4468bd26474bb8cfe2
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: -452958444475188414
-    second: guard_walk_right_0
+    second: walk_backwards_5
   - first:
       213: 4790283487587186698
-    second: guard_walk_right_1
+    second: walk_backwards_4
   - first:
       213: 9066956372765748902
-    second: guard_walk_right_2
+    second: walk_backwards_3
   - first:
       213: -9009733782483647883
-    second: guard_walk_right_3
+    second: walk_backwards_2
   - first:
       213: -8689526444298060907
-    second: guard_walk_right_4
+    second: walk_backwards_1
   - first:
       213: -4416864641842960685
-    second: guard_walk_right_5
+    second: walk_backwards_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guard_walk_right_0
+      name: walk_backwards_5
       rect:
         serializedVersion: 2
         x: 0
@@ -115,7 +115,7 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,7 +128,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_1
+      name: walk_backwards_4
       rect:
         serializedVersion: 2
         x: 311
@@ -136,7 +136,7 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,7 +149,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_2
+      name: walk_backwards_3
       rect:
         serializedVersion: 2
         x: 622
@@ -157,7 +157,7 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_3
+      name: walk_backwards_2
       rect:
         serializedVersion: 2
         x: 933
@@ -178,7 +178,7 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_4
+      name: walk_backwards_1
       rect:
         serializedVersion: 2
         x: 1244
@@ -199,7 +199,7 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_5
+      name: walk_backwards_0
       rect:
         serializedVersion: 2
         x: 1555
@@ -220,7 +220,7 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

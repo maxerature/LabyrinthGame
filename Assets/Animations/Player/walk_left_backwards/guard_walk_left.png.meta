@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 223223f6ae06d164fb8609b0e2bf643f
+guid: 683f61710625e8848a4576785d883c49
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -452958444475188414
-    second: guard_walk_right_0
+      213: -7335653922754557242
+    second: walk_backwards_5
   - first:
-      213: 4790283487587186698
-    second: guard_walk_right_1
+      213: 6034910039360214908
+    second: walk_backwards_4
   - first:
-      213: 9066956372765748902
-    second: guard_walk_right_2
+      213: -736366284056837589
+    second: walk_backwards_3
   - first:
-      213: -9009733782483647883
-    second: guard_walk_right_3
+      213: 5685719645865476006
+    second: walk_backwards_2
   - first:
-      213: -8689526444298060907
-    second: guard_walk_right_4
+      213: 7742056846232549129
+    second: walk_backwards_1
   - first:
-      213: -4416864641842960685
-    second: guard_walk_right_5
+      213: -7208884588693292334
+    second: walk_backwards_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guard_walk_right_0
+      name: walk_backwards_5
       rect:
         serializedVersion: 2
         x: 0
@@ -115,20 +115,20 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24bfa03d1b4c6b9f0800000000000000
-      internalID: -452958444475188414
+      spriteID: 6ca830b8f95823a90800000000000000
+      internalID: -7335653922754557242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_1
+      name: walk_backwards_4
       rect:
         serializedVersion: 2
         x: 311
@@ -136,20 +136,20 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a08bd03b3718a7240800000000000000
-      internalID: 4790283487587186698
+      spriteID: c77118bd4be40c350800000000000000
+      internalID: 6034910039360214908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_2
+      name: walk_backwards_3
       rect:
         serializedVersion: 2
         x: 622
@@ -157,20 +157,20 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6aeaaa048cc44dd70800000000000000
-      internalID: 9066956372765748902
+      spriteID: b22c73e14c6e7c5f0800000000000000
+      internalID: -736366284056837589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_3
+      name: walk_backwards_2
       rect:
         serializedVersion: 2
         x: 933
@@ -178,20 +178,20 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 572c9364cdef6f280800000000000000
-      internalID: -9009733782483647883
+      spriteID: 6af7548c4ebb7ee40800000000000000
+      internalID: 5685719645865476006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_4
+      name: walk_backwards_1
       rect:
         serializedVersion: 2
         x: 1244
@@ -199,20 +199,20 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59b304decb9986780800000000000000
-      internalID: -8689526444298060907
+      spriteID: 9077296beaf417b60800000000000000
+      internalID: 7742056846232549129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_walk_right_5
+      name: walk_backwards_0
       rect:
         serializedVersion: 2
         x: 1555
@@ -220,14 +220,14 @@ TextureImporter:
         width: 311
         height: 604
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d6a7f1820524b2c0800000000000000
-      internalID: -4416864641842960685
+      spriteID: 2daf52039a5e4fb90800000000000000
+      internalID: -7208884588693292334
       vertices: []
       indices: 
       edges: []
