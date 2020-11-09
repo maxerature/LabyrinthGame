@@ -53,7 +53,7 @@ MonoBehaviour:
   baseRange: 5
   baseDamage: 1
   baseKnockback: 0.25
-  baseRegenRate: 30
+  baseRegenRate: 1
   baseRegenTimer: 30
   bulletPrefab: {fileID: 731769867467873371, guid: 6a2cdc8c36d62d54ba166e413615e7ec, type: 3}
   healthBar: {fileID: 0}

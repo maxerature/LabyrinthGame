@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class DoorCheck : MonoBehaviour
 {
+    //Prefabs
     public GameObject lockedDoor;
     public GameObject closedDoor;
     public GameObject openDoorPrefab;
     public GameObject itemPrefab;
     public GameObject pitPrefab;
     public GameObject pillarPrefab;
-
     public GameObject[] enemyTypes;
 
-
+    //Spawn Locations
     public bool topDoor;
     public bool rightDoor;
     public bool bottomDoor;
     public bool leftDoor;
 
+    //Spawn Checks
     public bool topDoorSpawned;
     public bool rightDoorSpawned;
     public bool bottomDoorSpawned;
@@ -30,25 +31,25 @@ public class DoorCheck : MonoBehaviour
     public int bottomDoorType;
     public int leftDoorType;
 
-    private float deathTime = 5f;
-
+    //Components
     public List<GameObject> enemies;
     public List<GameObject> doors;
     public List<GameObject> unlockedDoors;
-
     private Collider2D collide;
 
+    //Reference to surrounding rooms.
     public GameObject topRoom;
     public GameObject rightRoom;
     public GameObject bottomRoom;
     public GameObject leftRoom;
 
-    private bool opened;
+    //Enemy spawning and stats
     public bool safeRoom;
     public bool itemRoom;
-
     public int enemyCount;
 
+    //If doors are opened
+    private bool opened;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +80,7 @@ public class DoorCheck : MonoBehaviour
         }
     }
 
+    //Spawn obstacles in the room
     void spawnObstacles()
     {
         Vector3 pos;
@@ -102,12 +104,10 @@ public class DoorCheck : MonoBehaviour
                     obstacle.transform.parent = gameObject.transform;
                     break;
             }
-
-            
-            
         }
     }
 
+    //Spawn enemies in the room
     void spawnEnemies()
     {
         if(!safeRoom)
@@ -130,8 +130,10 @@ public class DoorCheck : MonoBehaviour
         opened = false;
     }
 
+    //Called when an enemy is killed
     public void enemyKilled()
     {
+        //Remove dead enemy from list (broken, but somewhat useful)
         for(int i=enemies.Count-1; i >= 0; i--)
         {
             if(enemies[i] == null)
@@ -139,6 +141,8 @@ public class DoorCheck : MonoBehaviour
                 enemies.RemoveAt(i);
             }
         }
+
+        //Spawn item in item rooms
         if(itemRoom && enemyCount == 0)
         {
             GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
@@ -147,8 +151,11 @@ public class DoorCheck : MonoBehaviour
         }
     }
 
+    //Spawn doors in room
     public void spawnDoors()
     {
+        //TOP DOORS
+        //Spawn unlocked door
         if(topDoorType == 1)
         {
             GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
@@ -160,6 +167,7 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
             unlockedDoors.Add(door);
         }
+        //Spawn locked door
         else if(topDoorType == 2)
         {
             GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.identity);
@@ -171,6 +179,8 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
         }
 
+        //RIGHT DOORS
+        //Spawn unlocked door
         if(rightDoorType == 1)
         {
             GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, -90));
@@ -182,6 +192,7 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
             unlockedDoors.Add(door);
         }
+        //Spawn locked door
         else if (rightDoorType == 2)
         {
             GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, -90));
@@ -193,6 +204,8 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
         }
 
+        //BOTTOM DOORS
+        //Spawn unlocked door
         if (bottomDoorType == 1)
         {
             GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, 180));
@@ -204,6 +217,7 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
             unlockedDoors.Add(door);
         }
+        //Spawn locked door
         else if (bottomDoorType == 2)
         {
             GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, 180));
@@ -215,6 +229,8 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
         }
 
+        //LEFT DOORS
+        //Spawn unlocked door
         if (leftDoorType == 1)
         {
             GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, -270));
@@ -226,6 +242,7 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
             unlockedDoors.Add(door);
         }
+        //Spawn locked door
         else if (leftDoorType == 2)
         {
             GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, -270));
@@ -236,10 +253,11 @@ public class DoorCheck : MonoBehaviour
             leftDoorSpawned = true;
             doors.Add(door);
         }
+        //Destroy collider used by other rooms to check for doors
         Destroy(collide);
     }
 
-
+    //Check if surrounding rooms have doors to here
     public void checkDoors()
     {
         if (topDoor)

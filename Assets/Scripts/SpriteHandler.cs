@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SpriteHandler : MonoBehaviour
 {
+
     public Sprite[] sprites;
-
     private SpriteRenderer spr;
-
     public Vector2 size;
 
     // Start is called before the first frame update
@@ -17,10 +16,6 @@ public class SpriteHandler : MonoBehaviour
         int index = Random.Range(0, sprites.Length);
         spr.sprite = sprites[index];
 
-        //size = spr.size;
-        //float scale = size.x *(120f/81f);
-        //
-        //
         
         float scale = 1f;
         switch(index)
@@ -40,12 +35,6 @@ public class SpriteHandler : MonoBehaviour
                 break;
         }
         transform.localScale = new Vector3(scale/20, scale/20, 1f);
-        spr.sortingOrder = -1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        spr.sortingOrder = -4;
     }
 }

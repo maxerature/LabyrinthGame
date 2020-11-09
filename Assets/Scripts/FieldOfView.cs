@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-
+    //Edited Properties
     public float viewAngle;
     public int rayCount;
     public float viewDistance;
+    public bool radial;
+    public float radialDistance;
 
+    //Components
     [SerializeField] public LayerMask layerMask;
     private Mesh mesh;
     private Vector3 origin;
     public float startingAngle;
 
-    public bool radial;
-    public float radialDistance;
-
+    
+    /*--HELPER FUNCTIONS--*/
     public static Vector3 GetVectorFromAngle(float angle)
     {
         float angleRad = angle * (Mathf.PI / 180f);
@@ -29,30 +31,31 @@ public class FieldOfView : MonoBehaviour
         if (n < 0) n += 360;
         return n;
     }
-
     public void SetOrigin(Vector3 origin)
     {
         this.origin = origin;
     }
-
     public void SetAimDirection(Vector3 aimDirection)
     {
         startingAngle = GetAngleFromVector(aimDirection) + viewAngle / 2f;
     }
 
+    /*--PRIMARY FFUNCTIONS--*/
     // Start is called before the first frame update
     void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         gameObject.SetActive(false);
-        Invoke("levelSetup", 7.5f);
+        Invoke("levelSetup", 10.0001f);
     }
 
+    //Activate with player.
     void levelSetup()
     {
         gameObject.SetActive(true);
     }
+
 
     void Update()
     {

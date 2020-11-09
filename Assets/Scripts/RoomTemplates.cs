@@ -4,32 +4,38 @@ using UnityEngine;
 
 public class RoomTemplates : MonoBehaviour
 {
+    //Normal Room Prefabs
     public GameObject[] bottomRooms;
     public GameObject[] topRooms;
     public GameObject[] leftRooms;
     public GameObject[] rightRooms;
 
+    //Modular Room Prefabs (Unused)
     public GameObject[] openBottomRooms;
     public GameObject[] openTopRooms;
     public GameObject[] openLeftRooms;
     public GameObject[] openRightRooms;
 
+    //Special Room Prefabs
     public GameObject closedRoom;
-
-    public List<GameObject> rooms;
-
-    public float waitTime;
-    private bool spawnedBoss;
     public GameObject boss;
     public GameObject spawn;
+
+    //List of rooms
+    public List<GameObject> rooms;
+
+    //Internal use variables
+    public float waitTime;
+    private bool spawnedBoss;
+    
 
     void Start()
     {
         spawnedBoss = false;
-        //Invoke("GenerateRoomsLoop", 5f);
         Invoke("Deactivate", 10f);
     }
 
+    //Turn off when all rooms spawned
     void Deactivate()
     {
         for(int i=1; i<rooms.Count; i++)
@@ -51,22 +57,5 @@ public class RoomTemplates : MonoBehaviour
         {
             waitTime -= Time.deltaTime;
         }
-    }
-
-    void GenerateRoomsLoop()
-    {
-        foreach(GameObject room in rooms)
-        {
-            Transform roomCheck = room.transform.Find("DoorCheck");
-            DoorCheck dc = roomCheck.gameObject.GetComponent<DoorCheck>();
-            dc.checkDoors();
-        }
-        foreach (GameObject room in rooms)
-        {
-            Transform roomCheck = room.transform.Find("DoorCheck");
-            DoorCheck dc = roomCheck.gameObject.GetComponent<DoorCheck>();
-            dc.spawnDoors();
-        }
-        Deactivate();
     }
 }

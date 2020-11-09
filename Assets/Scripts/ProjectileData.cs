@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class ProjectileData : MonoBehaviour
 {
+    //Stats
     public float damage;
     public float speed;
     public Vector2 direction;
     public float lifeSpan;
 
+    //Components
     private Rigidbody2D rb;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.AddForce(direction * speed, ForceMode2D.Impulse);
-        
     }
 
     void Update()

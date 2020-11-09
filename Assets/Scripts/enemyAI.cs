@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class enemyAI : MonoBehaviour
 {
-
-    public Transform target;
+    //Stats
     public float moveSpeed;
-    private Rigidbody2D rb;
+    public bool ranged;
     public float attackPower;
     public float health;
-
-    public bool ranged;
     public float attemptedOuterDistance;
     public float attemptedInnerDistance;
     public float firingOuterRange;
     public float firingInnerRange;
-
-    public GameObject projectilePrefab;
     public float attackCooldown;
     public float attackCooldownRemaining;
+
+    //Components
+    public Transform target;
+    private Rigidbody2D rb;
+    public GameObject projectilePrefab;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,45 +31,56 @@ public class enemyAI : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
+        //Lookat player
         transform.LookAt(target.position);
         transform.Rotate(new Vector3(0, -90, 0), Space.Self);
 
-        
+        //Attacks
+        if (ranged)
+            shoot();
+            
+    }
 
-        if(ranged)
+    //Function to a projectile shoot at player
+    void shoot()
+    {
+        if (Vector3.Distance(transform.position, target.position) < firingOuterRange && Vector3.Distance(transform.position, target.position) > firingInnerRange)
         {
-            if(Vector3.Distance(transform.position, target.position) < firingOuterRange && Vector3.Distance(transform.position, target.position) > firingInnerRange)
+            if (attackCooldownRemaining <= 0)
             {
-                if (attackCooldownRemaining <= 0)
-                {
-                    attackCooldownRemaining = attackCooldown;
-                    GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                    ProjectileData proj = projectile.GetComponent<ProjectileData>();
-                    proj.direction = (target.position - transform.position).normalized;
-                    proj.damage = attackPower;
-                }
-                else 
-                    attackCooldownRemaining -= Time.deltaTime;
+                attackCooldownRemaining = attackCooldown;
+                GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+                ProjectileData proj = projectile.GetComponent<ProjectileData>();
+                proj.direction = (target.position - transform.position).normalized;
+                proj.damage = attackPower;
             }
+            else
+                attackCooldownRemaining -= Time.deltaTime;
         }
     }
 
+    //Update dealing with Rigidbody
     void FixedUpdate()
     {
         Vector3 lastPos = transform.position;
+
+        //If too far from player, move closer
         if (Vector3.Distance(transform.position, target.position) > attemptedOuterDistance)
         {
             rb.AddRelativeForce(transform.right * moveSpeed);
-            //transform.Translate(new Vector3(moveSpeed * Time.deltaTime, 0, 0));
         }
+
+        //If too close to player, move farther
         else if (Vector3.Distance(transform.position, target.position) < attemptedInnerDistance)
         {
             rb.AddRelativeForce(transform.right * -moveSpeed);
-            //transform.Translate(new Vector3(-moveSpeed * Time.deltaTime, 0, 0));
         }
+
+        //If unable/unwilling to move front/back, move left/right
         if(transform.position == lastPos)
         {
             int dir = Random.Range(0, 2);
@@ -84,12 +97,15 @@ public class enemyAI : MonoBehaviour
         }
     }
 
+
+    //When taking damage
     public void onTakeDamage(float damage, float knockback)
     {
         health -= damage;
         Debug.Log(health);
         transform.Translate(new Vector2(-knockback,0));
 
+        //If health = 0, die
         if(health <= 0)
         {
             GameObject roomControl = transform.parent.transform.gameObject;
@@ -100,6 +116,7 @@ public class enemyAI : MonoBehaviour
             dc.enemyKilled();
         }
     }
+
 
     public void hit(Vector2 knockback)
     {

@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         viewCamera = Camera.main;
         viewCamera.enabled = false;
         activateMouse = false;
-        HealthBar hbscript = healthBar.GetComponent<HealthBar>();
+        hbscript = healthBar.GetComponent<HealthBar>();
 
 
         //Activate functions with delay
@@ -96,6 +96,8 @@ public class Player : MonoBehaviour
             if (regenTimerRemaining <= 0)
             {
                 health += regenRate;
+                if (health > maxHealth)
+                    health = maxHealth;
                 float healthPerc = health / maxHealth;
                 hbscript.SetSize(healthPerc);
 
@@ -252,12 +254,14 @@ public class Player : MonoBehaviour
         //If item
         else if(col.gameObject.tag == "Item")
         {
-            items.Add(col.gameObject.name);
-            ItemHandler ih = col.gameObject.GetComponent<ItemHandler>();
+            GameObject item = col.gameObject;
+            Destroy(col);
+            items.Add(item.name);
+            ItemHandler ih = item.GetComponent<ItemHandler>();
             ih.onPickup(gameObject, this);
-            if(col)
+            if(item)
             {
-                Destroy(col.gameObject);
+                Destroy(item);
             }
         }
     }
