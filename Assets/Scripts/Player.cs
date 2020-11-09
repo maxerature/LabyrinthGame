@@ -5,15 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //Base Stats
-    public float moveSpeed = 10f;
-    public float maxHealth;
+    public float baseMoveSpeed = 10f;
+    public float baseMaxHealth;
     public float health;
-    public float range;
-    public float damage;
-    public float knockback;
-    public float invincibilityTime;
-    public float regenRate;
-    public float regenTimer;
+    public float baseRange;
+    public float baseDamage;
+    public float baseKnockback;
+    public float baseRegenRate;
+    public float baseRegenTimer;
 
     //Components
     private Rigidbody2D rb;
@@ -22,15 +21,27 @@ public class Player : MonoBehaviour
     public GameObject healthBar;
     [SerializeField] private FieldOfView fieldOfView;
 
-    //Invincibility
+    //Invincibility and Timers
+    public float invincibilityTime;
     private bool invincible = false;
     public float invincibilityTimeRemaining;
+    public float regenTimerRemaining;
 
     //Item Stats
-    public List<GameObject> items;
+    public List<string> items;
     public float killRegen;
-    public float damRegen;
+    public float damTimerDec;
+    public float moveSpeed;
+    public float maxHealth;
+    public float range;
+    public float damage;
+    public float knockback;
+    public float regenRate;
+    public float regenTimer;
+
+    private bool activateMouse;
     
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +50,20 @@ public class Player : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         viewCamera = Camera.main;
         viewCamera.enabled = false;
+        activateMouse = false;
 
 
         //Activate functions with delay
-        Invoke("levelSetup", 7f);
+        Invoke("levelSetup", 10f);
+
+        //Set stats to base stats
+        moveSpeed = baseMoveSpeed;
+        maxHealth = baseMaxHealth;
+        range = baseRange;
+        damage = baseDamage;
+        knockback = baseKnockback;
+        regenRate = baseRegenRate;
+        regenTimer = baseRegenTimer;
     }
 
     //Sets up the game after level generation.
@@ -51,6 +72,16 @@ public class Player : MonoBehaviour
         Vector3 pos = new Vector3(0, 0, 0);
         transform.position = pos;
         viewCamera.enabled = true;
+
+        //Stats Setup (Duplicate)
+        moveSpeed = baseMoveSpeed;
+        maxHealth = baseMaxHealth;
+        range = baseRange;
+        damage = baseDamage;
+        knockback = baseKnockback;
+        regenRate = baseRegenRate;
+        regenTimer = baseRegenTimer;
+        activateMouse = true;
     }
 
     //Regenerate
@@ -58,21 +89,21 @@ public class Player : MonoBehaviour
     {
         if (health < maxHealth)
         {
-            regenTimer -= Time.deltaTime;
+            regenTimerRemaining -= Time.deltaTime;
             if (regenTimer <= 0)
             {
-                health += 1;
+                health += regenRate;
                 float healthPerc = health / maxHealth;
                 HealthBar hbscript = healthBar.GetComponent<HealthBar>();
                 hbscript.SetSize(healthPerc);
 
-                regenTimer = regenRate;
+                regenTimerRemaining = regenTimer;
             }
         }
     }
 
     //Shoot bullet
-    void Shoot()
+    void Shoot(Vector3 aimDir)
     {
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
@@ -109,22 +140,25 @@ public class Player : MonoBehaviour
             Destroy(this);
         }
 
-        //Get Aim direction and rotate
-        Vector3 targetPosition = GetMouseWorldPosition();
-        Vector3 aimDir = (targetPosition - transform.position).normalized;
-        Vector3 vectorToTarget = targetPosition - transform.position;
-        Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
-        Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-        transform.rotation = targetRotation;
-
-        //Rotate field of view.
-        fieldOfView.SetAimDirection(aimDir);
-        fieldOfView.SetOrigin(transform.position);
-
-        //Shoot on LMB
-        if (Input.GetMouseButtonDown(0))
+        if (activateMouse)
         {
-            Shoot();
+            //Get Aim direction and rotate
+            Vector3 targetPosition = GetMouseWorldPosition();
+            Vector3 aimDir = (targetPosition - transform.position).normalized;
+            Vector3 vectorToTarget = targetPosition - transform.position;
+            Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
+            Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+            transform.rotation = targetRotation;
+
+            //Rotate field of view.
+            fieldOfView.SetAimDirection(aimDir);
+            fieldOfView.SetOrigin(transform.position);
+
+            //Shoot on LMB
+            if (Input.GetMouseButtonDown(0))
+            {
+                Shoot(aimDir);
+            }
         }
 
         //Reduce Invincibility Timer
@@ -180,6 +214,7 @@ public class Player : MonoBehaviour
     //Collision with hurtbox
     void OnTriggerEnter2D(Collider2D col)
     {
+        //If enemy
         if (col.gameObject.layer == 8)
         {
             if (!invincible)
@@ -206,5 +241,14 @@ public class Player : MonoBehaviour
                 hbscript.SetSize(healthPerc);
             }
         }
+
+        //If item
+        else if(col.gameObject.tag == "Item")
+        {
+            items.Add(col.gameObject.name);
+            ItemHandler ih = col.gameObject.GetComponent<ItemHandler>();
+            ih.onPickup(gameObject, this);
+        }
     }
+
 }

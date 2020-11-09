@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2017318881289581965}
+  - component: {fileID: 2658995434245450375}
   m_Layer: 0
-  m_Name: Closed Wall
+  m_Name: ItemRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,10 +33,21 @@ Transform:
   - {fileID: 2569282672774032117}
   - {fileID: 8421500158701938150}
   - {fileID: 7980245066052333921}
-  - {fileID: 6537351053975676046}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2658995434245450375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017318881289581962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22dbbfc1233e5e7469f32f85267c6d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2017318881728819262
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,36 +130,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &6861329392237682202
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6537351053975676046}
-  m_Layer: 0
-  m_Name: ItemHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6537351053975676046
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6861329392237682202}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2017318881289581965}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &220285096410809187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,6 +159,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7662665248668865499, guid: 20d4ac72904c9a14bbf45d722aa2057a, type: 3}
       propertyPath: safeRoom
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662665248668865499, guid: 20d4ac72904c9a14bbf45d722aa2057a, type: 3}
+      propertyPath: itemRoom
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7904128215608586754, guid: 20d4ac72904c9a14bbf45d722aa2057a, type: 3}

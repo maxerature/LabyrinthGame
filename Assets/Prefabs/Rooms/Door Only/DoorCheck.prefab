@@ -63,6 +63,7 @@ MonoBehaviour:
   lockedDoor: {fileID: 1527602618668521068, guid: ab1160e9f2862854e9349726df5b8485, type: 3}
   closedDoor: {fileID: 2919128041290466116, guid: 02b827f74d755fe46a84096559a431d0, type: 3}
   openDoorPrefab: {fileID: 2925342100437498734, guid: c1cbfdae936fed346a326c7309572e90, type: 3}
+  itemPrefab: {fileID: 8462388475787462748, guid: 04c49ceb7cba1134a8be043915488774, type: 3}
   enemyTypes:
   - {fileID: 6710875609824945713, guid: f0da39e1a02250941be9f947578f0dba, type: 3}
   - {fileID: 6710875609824945713, guid: d449758a8c999b043bb80c4db10553ed, type: 3}
@@ -90,3 +91,5 @@ MonoBehaviour:
   bottomRoom: {fileID: 0}
   leftRoom: {fileID: 0}
   safeRoom: 0
+  itemRoom: 0
+  enemyCount: 0

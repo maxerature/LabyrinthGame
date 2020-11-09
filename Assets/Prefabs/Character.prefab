@@ -47,19 +47,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760eae6bceda1aa468898eb58de6ed52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  maxHealth: 50
+  baseMoveSpeed: 10
+  baseMaxHealth: 50
   health: 50
-  range: 5
-  damage: 1
-  knockback: 0.25
-  invincibilityTime: 0
-  regenRate: 30
-  regenTimer: 30
-  invincibilityTimeRemaining: 0
+  baseRange: 5
+  baseDamage: 1
+  baseKnockback: 0.25
+  baseRegenRate: 30
+  baseRegenTimer: 30
   bulletPrefab: {fileID: 731769867467873371, guid: 6a2cdc8c36d62d54ba166e413615e7ec, type: 3}
   healthBar: {fileID: 0}
   fieldOfView: {fileID: 0}
+  invincibilityTime: 2
+  invincibilityTimeRemaining: 0
+  regenTimerRemaining: 0
+  items: []
+  killRegen: 0
+  damTimerDec: 0
+  moveSpeed: 0
+  maxHealth: 0
+  range: 0
+  damage: 0
+  knockback: 0
+  regenRate: 0
+  regenTimer: 0
 --- !u!50 &4063067949989035997
 Rigidbody2D:
   serializedVersion: 4
@@ -73,7 +84,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

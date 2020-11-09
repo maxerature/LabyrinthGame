@@ -7,8 +7,10 @@ public class DoorCheck : MonoBehaviour
     public GameObject lockedDoor;
     public GameObject closedDoor;
     public GameObject openDoorPrefab;
+    public GameObject itemPrefab;
 
     public GameObject[] enemyTypes;
+
 
     public bool topDoor;
     public bool rightDoor;
@@ -41,6 +43,7 @@ public class DoorCheck : MonoBehaviour
 
     private bool opened;
     public bool safeRoom;
+    public bool itemRoom;
 
     public int enemyCount;
 
@@ -49,10 +52,10 @@ public class DoorCheck : MonoBehaviour
     void Start()
     {
         collide = gameObject.GetComponent<Collider2D>();
-        opened = false;
+        opened = true;
         Invoke("checkDoors", 6f);
         Invoke("spawnDoors", 6.5f);
-        Invoke("spawnEnemies", 6.5f);
+        Invoke("spawnEnemies", 7.5f);
     }
 
     void Update()
@@ -91,6 +94,7 @@ public class DoorCheck : MonoBehaviour
                 enemies.Add(enemy);
             }
         }
+        opened = false;
     }
 
     public void enemyKilled()
@@ -102,9 +106,15 @@ public class DoorCheck : MonoBehaviour
                 enemies.RemoveAt(i);
             }
         }
+        if(itemRoom && enemyCount == 0)
+        {
+            GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+            ItemHandler ih = item.GetComponent<ItemHandler>();
+            ih.setType(Random.Range(0, 8));
+        }
     }
 
-    void spawnDoors()
+    public void spawnDoors()
     {
         if(topDoorType == 1)
         {
@@ -197,7 +207,7 @@ public class DoorCheck : MonoBehaviour
     }
 
 
-    void checkDoors()
+    public void checkDoors()
     {
         if (topDoor)
         {

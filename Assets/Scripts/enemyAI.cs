@@ -81,8 +81,8 @@ public class enemyAI : MonoBehaviour
             DoorCheck dc = roomControl.GetComponent<DoorCheck>();
 
             Destroy(gameObject);
-            dc.enemyKilled();
             dc.enemyCount--;
+            dc.enemyKilled();
         }
     }
 

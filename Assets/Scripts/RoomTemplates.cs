@@ -26,7 +26,8 @@ public class RoomTemplates : MonoBehaviour
     void Start()
     {
         spawnedBoss = false;
-        Invoke("Deactivate", 7f);
+        //Invoke("GenerateRoomsLoop", 5f);
+        Invoke("Deactivate", 10f);
     }
 
     void Deactivate()
@@ -50,5 +51,22 @@ public class RoomTemplates : MonoBehaviour
         {
             waitTime -= Time.deltaTime;
         }
+    }
+
+    void GenerateRoomsLoop()
+    {
+        foreach(GameObject room in rooms)
+        {
+            Transform roomCheck = room.transform.Find("DoorCheck");
+            DoorCheck dc = roomCheck.gameObject.GetComponent<DoorCheck>();
+            dc.checkDoors();
+        }
+        foreach (GameObject room in rooms)
+        {
+            Transform roomCheck = room.transform.Find("DoorCheck");
+            DoorCheck dc = roomCheck.gameObject.GetComponent<DoorCheck>();
+            dc.spawnDoors();
+        }
+        Deactivate();
     }
 }
