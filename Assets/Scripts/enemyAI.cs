@@ -57,6 +57,7 @@ public class enemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector3 lastPos = transform.position;
         if (Vector3.Distance(transform.position, target.position) > attemptedOuterDistance)
         {
             rb.AddRelativeForce(transform.right * moveSpeed);
@@ -66,6 +67,20 @@ public class enemyAI : MonoBehaviour
         {
             rb.AddRelativeForce(transform.right * -moveSpeed);
             //transform.Translate(new Vector3(-moveSpeed * Time.deltaTime, 0, 0));
+        }
+        if(transform.position == lastPos)
+        {
+            int dir = Random.Range(0, 2);
+
+            switch(dir)
+            {
+                case 0:
+                    rb.AddRelativeForce(transform.up * 2*moveSpeed);
+                    break;
+                case 1:
+                    rb.AddRelativeForce(transform.up * 2* -moveSpeed);
+                    break;
+            }
         }
     }
 

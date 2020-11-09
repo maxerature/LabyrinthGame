@@ -8,6 +8,8 @@ public class DoorCheck : MonoBehaviour
     public GameObject closedDoor;
     public GameObject openDoorPrefab;
     public GameObject itemPrefab;
+    public GameObject pitPrefab;
+    public GameObject pillarPrefab;
 
     public GameObject[] enemyTypes;
 
@@ -56,6 +58,8 @@ public class DoorCheck : MonoBehaviour
         Invoke("checkDoors", 6f);
         Invoke("spawnDoors", 6.5f);
         Invoke("spawnEnemies", 7.5f);
+        if (!safeRoom)
+            Invoke("spawnObstacles", 6f);
     }
 
     void Update()
@@ -75,6 +79,35 @@ public class DoorCheck : MonoBehaviour
         }
     }
 
+    void spawnObstacles()
+    {
+        Vector3 pos;
+        int type;
+        int obstacleCount = Random.Range(0, 75);
+        GameObject obstacle;
+        for(int i=0; i<obstacleCount; i++)
+        {
+            pos = new Vector3(Random.Range(-7, 7), Random.Range(-7, 7), 0);
+            pos = transform.position + pos;
+
+            type = Random.Range(0, 2);  //0 = pit, 1 = pillar
+            switch(type)
+            {
+                case 0:
+                    obstacle = Instantiate(pitPrefab, pos, Quaternion.identity);
+                    obstacle.transform.parent = gameObject.transform;
+                    break;
+                case 1:
+                    obstacle = Instantiate(pillarPrefab, pos, Quaternion.identity);
+                    obstacle.transform.parent = gameObject.transform;
+                    break;
+            }
+
+            
+            
+        }
+    }
+
     void spawnEnemies()
     {
         if(!safeRoom)
@@ -88,7 +121,7 @@ public class DoorCheck : MonoBehaviour
                 GameObject enemy = Instantiate(enemyTypes[randType], transform.position, Quaternion.identity);
                 enemy.transform.parent = gameObject.transform;
 
-                Vector3 pos = new Vector3(Random.Range(-6, 6), Random.Range(-6, 6), 0);
+                Vector3 pos = new Vector3(Random.Range(-6, 7), Random.Range(-6, 7), 0);
                 pos = enemy.transform.position + pos;
                 enemy.transform.position = pos;
                 enemies.Add(enemy);

@@ -13,6 +13,7 @@ public class ItemHandler : MonoBehaviour
 
     public void setType(int itemType)
     {
+        this.itemType = itemType;
         switch (itemType)
         {
             case 0: //Moderate regeneration on kill

@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject healthBar;
     [SerializeField] private FieldOfView fieldOfView;
+    private HealthBar hbscript;
 
     //Invincibility and Timers
     public float invincibilityTime;
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
         viewCamera = Camera.main;
         viewCamera.enabled = false;
         activateMouse = false;
+        HealthBar hbscript = healthBar.GetComponent<HealthBar>();
 
 
         //Activate functions with delay
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour
         regenRate = baseRegenRate;
         regenTimer = baseRegenTimer;
         activateMouse = true;
+        hbscript.SetSize(1f);
     }
 
     //Regenerate
@@ -90,11 +93,10 @@ public class Player : MonoBehaviour
         if (health < maxHealth)
         {
             regenTimerRemaining -= Time.deltaTime;
-            if (regenTimer <= 0)
+            if (regenTimerRemaining <= 0)
             {
                 health += regenRate;
                 float healthPerc = health / maxHealth;
-                HealthBar hbscript = healthBar.GetComponent<HealthBar>();
                 hbscript.SetSize(healthPerc);
 
                 regenTimerRemaining = regenTimer;
@@ -133,6 +135,11 @@ public class Player : MonoBehaviour
     void Update() {
         //Regeneration
         Regenerate();
+
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
         
         //Destroy script on death
         if(health <= 0)
@@ -248,6 +255,10 @@ public class Player : MonoBehaviour
             items.Add(col.gameObject.name);
             ItemHandler ih = col.gameObject.GetComponent<ItemHandler>();
             ih.onPickup(gameObject, this);
+            if(col)
+            {
+                Destroy(col.gameObject);
+            }
         }
     }
 
