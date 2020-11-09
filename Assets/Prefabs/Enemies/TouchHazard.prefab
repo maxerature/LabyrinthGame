@@ -177,18 +177,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37874037b6f880a4380f7efd96e2c8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  moveSpeed: 2.5
-  attackPower: 4
-  health: 3
+  moveSpeed: 10
   ranged: 0
+  attackPower: 7
+  health: 3
   attemptedOuterDistance: 0
   attemptedInnerDistance: 0
   firingOuterRange: 0
   firingInnerRange: 0
-  projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
   attackCooldown: 0
   attackCooldownRemaining: 0
+  target: {fileID: 0}
+  projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
 --- !u!50 &6710875609824945724
 Rigidbody2D:
   serializedVersion: 4

@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public GameObject healthBar;
     [SerializeField] private FieldOfView fieldOfView;
     private HealthBar hbscript;
+    public GameObject canvas;
 
     //Invincibility and Timers
     public float invincibilityTime;
@@ -61,11 +62,14 @@ public class Player : MonoBehaviour
         //Set stats to base stats
         moveSpeed = baseMoveSpeed;
         maxHealth = baseMaxHealth;
+        health = maxHealth;
         range = baseRange;
         damage = baseDamage;
         knockback = baseKnockback;
         regenRate = baseRegenRate;
         regenTimer = baseRegenTimer;
+        HUDController hud = canvas.GetComponent<HUDController>();
+        hud.updateTexts((float)range / baseRange, (float)damage / baseDamage, (float)knockback / baseKnockback, (float)regenRate / baseRegenRate, (float)killRegen, (float)damTimerDec);
     }
 
     //Sets up the game after level generation.
@@ -100,6 +104,8 @@ public class Player : MonoBehaviour
                     health = maxHealth;
                 float healthPerc = health / maxHealth;
                 hbscript.SetSize(healthPerc);
+                HUDController hud = canvas.GetComponent<HUDController>();
+                hud.setHealthText(health, maxHealth);
 
                 regenTimerRemaining = regenTimer;
             }
@@ -116,20 +122,12 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, aimDir, range, 1 << LayerMask.NameToLayer("Targets"));
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider);
             GameObject other = hit.collider.gameObject;
             enemyAI otherScript = other.GetComponent<enemyAI>();
-            Debug.Log(other);
             if (otherScript != null)
             {
                 otherScript.onTakeDamage(damage, knockback);
             }
-            else
-                Debug.Log("no component");
-        }
-        else
-        {
-            Debug.Log("nothing hit");
         }
     }
         
@@ -248,6 +246,8 @@ public class Player : MonoBehaviour
                 float healthPerc = health / maxHealth;
                 HealthBar hbscript = healthBar.GetComponent<HealthBar>();
                 hbscript.SetSize(healthPerc);
+                HUDController hud = canvas.GetComponent<HUDController>();
+                hud.setHealthText(health, maxHealth);
             }
         }
 
@@ -259,7 +259,9 @@ public class Player : MonoBehaviour
             items.Add(item.name);
             ItemHandler ih = item.GetComponent<ItemHandler>();
             ih.onPickup(gameObject, this);
-            if(item)
+            HUDController hud = canvas.GetComponent<HUDController>();
+            hud.updateTexts((float)range / baseRange, (float)damage / baseDamage, (float)knockback / baseKnockback, (float)regenRate / baseRegenRate, (float)killRegen, (float)damTimerDec);
+            if (item)
             {
                 Destroy(item);
             }

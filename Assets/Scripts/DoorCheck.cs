@@ -143,11 +143,28 @@ public class DoorCheck : MonoBehaviour
         }
 
         //Spawn item in item rooms
-        if(itemRoom && enemyCount == 0)
+        if(enemyCount == 0)
         {
-            GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
-            ItemHandler ih = item.GetComponent<ItemHandler>();
-            ih.setType(Random.Range(0, 8));
+            if (itemRoom)
+            {
+                for (int i = Random.Range(1, 4); i > 0; i--)
+                {
+                    GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                    ItemHandler ih = item.GetComponent<ItemHandler>();
+                    ih.setType(Random.Range(0, 8));
+                }
+            }
+            else
+            {
+                int itemChance = Random.Range(0, 5);
+                Debug.Log(itemChance);
+                if (itemChance == 4)
+                {
+                    GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                    ItemHandler ih = item.GetComponent<ItemHandler>();
+                    ih.setType(Random.Range(0, 8));
+                }
+            }
         }
     }
 

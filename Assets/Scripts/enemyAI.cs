@@ -102,7 +102,6 @@ public class enemyAI : MonoBehaviour
     public void onTakeDamage(float damage, float knockback)
     {
         health -= damage;
-        Debug.Log(health);
         transform.Translate(new Vector2(-knockback,0));
 
         //If health = 0, die
