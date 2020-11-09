@@ -13,6 +13,7 @@ public class HUDController : MonoBehaviour
     public Text regenText;
     public Text killRegenText;
     public Text damRegenText;
+    public Text moveSpeedText;
 
     //Components
     private GameObject player;
@@ -35,7 +36,7 @@ public class HUDController : MonoBehaviour
         healthText.text = text;
     }
 
-    public void updateTexts(float rangeMod, float damMod, float kbMod, float regenMod, float killRegenMod, float damRegenMod)
+    public void updateTexts(float rangeMod, float damMod, float kbMod, float regenMod, float killRegenMod, float damRegenMod, float moveSpeedMod)
     {
         rangeText.text = "Range        Modifier: " + rangeMod;
         damText.text = "Damage     Modifier: " + damMod;
@@ -43,5 +44,6 @@ public class HUDController : MonoBehaviour
         regenText.text = "Regen        Modifier: " + regenMod;
         killRegenText.text = "Regen      on      Kill: " + killRegenMod;
         damRegenText.text = "Damage Timer Dec: " + damRegenMod;
+        moveSpeedText.text = "Movement Modifier: " + moveSpeedMod;
     }
 }

@@ -69,7 +69,8 @@ public class Player : MonoBehaviour
         regenRate = baseRegenRate;
         regenTimer = baseRegenTimer;
         HUDController hud = canvas.GetComponent<HUDController>();
-        hud.updateTexts((float)range / baseRange, (float)damage / baseDamage, (float)knockback / baseKnockback, (float)regenRate / baseRegenRate, (float)killRegen, (float)damTimerDec);
+        hud.setHealthText(health, maxHealth);
+        hud.updateTexts((float)range / baseRange, (float)damage / baseDamage, (float)knockback / baseKnockback, (float)regenRate / baseRegenRate, (float)killRegen, (float)damTimerDec, (float)moveSpeed / baseMoveSpeed);
     }
 
     //Sets up the game after level generation.
@@ -260,7 +261,7 @@ public class Player : MonoBehaviour
             ItemHandler ih = item.GetComponent<ItemHandler>();
             ih.onPickup(gameObject, this);
             HUDController hud = canvas.GetComponent<HUDController>();
-            hud.updateTexts((float)range / baseRange, (float)damage / baseDamage, (float)knockback / baseKnockback, (float)regenRate / baseRegenRate, (float)killRegen, (float)damTimerDec);
+            hud.updateTexts((float)range / baseRange, (float)damage / baseDamage, (float)knockback / baseKnockback, (float)regenRate / baseRegenRate, (float)killRegen, (float)damTimerDec, (float)moveSpeed/baseMoveSpeed);
             if (item)
             {
                 Destroy(item);
