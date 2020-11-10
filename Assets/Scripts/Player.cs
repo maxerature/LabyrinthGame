@@ -92,6 +92,7 @@ public class Player : MonoBehaviour
         regenRate = baseRegenRate;
         regenTimer = baseRegenTimer;
         activateMouse = true;
+        health = maxHealth;
         hbscript.SetSize(1f);
     }
 
