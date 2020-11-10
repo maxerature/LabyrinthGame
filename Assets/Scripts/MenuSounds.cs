@@ -10,12 +10,10 @@ public class MenuSounds : MonoBehaviour
 
     public void PlaySelect()
     {
-        // audioSource.pitch = Random.Range(0.7f, 1.1f);
-        audioSource.PlayOneShot(menuSelect);
-        //float after playoneshot to scale volume from 0 to 1
+        MusicManager.instance.audioSource.PlayOneShot(menuSelect);
     }
     public void PlayStart()
     {
-        audioSource.PlayOneShot(startGame);
+        MusicManager.instance.audioSource.PlayOneShot(startGame);
     }
 }
