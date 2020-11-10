@@ -1599,7 +1599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   track: 2
-  delay: 7.5
+  delay: 10
 --- !u!4 &1580701781
 Transform:
   m_ObjectHideFlags: 0
