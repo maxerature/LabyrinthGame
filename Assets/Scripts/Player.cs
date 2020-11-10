@@ -119,7 +119,9 @@ public class Player : MonoBehaviour
     //Shoot bullet
     void Shoot(Vector3 aimDir)
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Vector3 pos = transform.position;
+        pos += transform.right * 0.5f;
+        GameObject bullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
         PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
         proj.direction = (aimDir).normalized;
 
