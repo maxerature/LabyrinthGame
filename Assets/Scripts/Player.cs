@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     [SerializeField] private FieldOfView fieldOfView;
     private HealthBar hbscript;
     public GameObject canvas;
+    public AudioSource audioSource;
+    public AudioClip gunShot;
 
     //Invincibility and Timers
     public float invincibilityTime;
@@ -119,6 +121,9 @@ public class Player : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
         proj.direction = (aimDir).normalized;
+
+        audioSource.pitch = Random.Range(0.7f, 1.1f);
+        audioSource.PlayOneShot(gunShot);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, aimDir, range, 1 << LayerMask.NameToLayer("Targets"));
         if (hit.collider != null)
