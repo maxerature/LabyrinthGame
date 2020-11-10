@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class pausemenu : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -45,11 +45,13 @@ public class pausemenu : MonoBehaviour
     }
 
     public void LoadMenu(){
-        Debug.Log("Loading menu");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
+
     }
 
     public void QuitGame(){
-        Debug.Log("quitting the game");
+        Application.Quit();
     }
     
 }
