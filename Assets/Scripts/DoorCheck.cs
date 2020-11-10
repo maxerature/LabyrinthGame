@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class DoorCheck : MonoBehaviour
 {
+    //Prefabs
     public GameObject lockedDoor;
     public GameObject closedDoor;
     public GameObject openDoorPrefab;
-
+    public GameObject itemPrefab;
+    public GameObject pitPrefab;
+    public GameObject pillarPrefab;
     public GameObject[] enemyTypes;
 
+    //Spawn Locations
     public bool topDoor;
     public bool rightDoor;
     public bool bottomDoor;
     public bool leftDoor;
 
+    //Spawn Checks
     public bool topDoorSpawned;
     public bool rightDoorSpawned;
     public bool bottomDoorSpawned;
@@ -26,33 +31,36 @@ public class DoorCheck : MonoBehaviour
     public int bottomDoorType;
     public int leftDoorType;
 
-    private float deathTime = 5f;
-
+    //Components
     public List<GameObject> enemies;
     public List<GameObject> doors;
     public List<GameObject> unlockedDoors;
-
     private Collider2D collide;
 
+    //Reference to surrounding rooms.
     public GameObject topRoom;
     public GameObject rightRoom;
     public GameObject bottomRoom;
     public GameObject leftRoom;
 
-    private bool opened;
+    //Enemy spawning and stats
     public bool safeRoom;
-
+    public bool itemRoom;
     public int enemyCount;
 
+    //If doors are opened
+    private bool opened;
 
     // Start is called before the first frame update
     void Start()
     {
         collide = gameObject.GetComponent<Collider2D>();
-        opened = false;
+        opened = true;
         Invoke("checkDoors", 6f);
         Invoke("spawnDoors", 6.5f);
-        Invoke("spawnEnemies", 6.5f);
+        Invoke("spawnEnemies", 7.5f);
+        if (!safeRoom)
+            Invoke("spawnObstacles", 6f);
     }
 
     void Update()
@@ -72,6 +80,34 @@ public class DoorCheck : MonoBehaviour
         }
     }
 
+    //Spawn obstacles in the room
+    void spawnObstacles()
+    {
+        Vector3 pos;
+        int type;
+        int obstacleCount = Random.Range(0, 75);
+        GameObject obstacle;
+        for(int i=0; i<obstacleCount; i++)
+        {
+            pos = new Vector3(Random.Range(-7, 7), Random.Range(-7, 7), 0);
+            pos = transform.position + pos;
+
+            type = Random.Range(0, 2);  //0 = pit, 1 = pillar
+            switch(type)
+            {
+                case 0:
+                    obstacle = Instantiate(pitPrefab, pos, Quaternion.identity);
+                    obstacle.transform.parent = gameObject.transform;
+                    break;
+                case 1:
+                    obstacle = Instantiate(pillarPrefab, pos, Quaternion.identity);
+                    obstacle.transform.parent = gameObject.transform;
+                    break;
+            }
+        }
+    }
+
+    //Spawn enemies in the room
     void spawnEnemies()
     {
         if(!safeRoom)
@@ -85,16 +121,19 @@ public class DoorCheck : MonoBehaviour
                 GameObject enemy = Instantiate(enemyTypes[randType], transform.position, Quaternion.identity);
                 enemy.transform.parent = gameObject.transform;
 
-                Vector3 pos = new Vector3(Random.Range(-6, 6), Random.Range(-6, 6), 0);
+                Vector3 pos = new Vector3(Random.Range(-6, 7), Random.Range(-6, 7), 0);
                 pos = enemy.transform.position + pos;
                 enemy.transform.position = pos;
                 enemies.Add(enemy);
             }
         }
+        opened = false;
     }
 
+    //Called when an enemy is killed
     public void enemyKilled()
     {
+        //Remove dead enemy from list (broken, but somewhat useful)
         for(int i=enemies.Count-1; i >= 0; i--)
         {
             if(enemies[i] == null)
@@ -102,10 +141,38 @@ public class DoorCheck : MonoBehaviour
                 enemies.RemoveAt(i);
             }
         }
+
+        //Spawn item in item rooms
+        if(enemyCount == 0)
+        {
+            if (itemRoom)
+            {
+                for (int i = Random.Range(1, 4); i > 0; i--)
+                {
+                    GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                    ItemHandler ih = item.GetComponent<ItemHandler>();
+                    ih.setType(Random.Range(0, 8));
+                }
+            }
+            else
+            {
+                int itemChance = Random.Range(0, 5);
+                Debug.Log(itemChance);
+                if (itemChance == 4)
+                {
+                    GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                    ItemHandler ih = item.GetComponent<ItemHandler>();
+                    ih.setType(Random.Range(0, 8));
+                }
+            }
+        }
     }
 
-    void spawnDoors()
+    //Spawn doors in room
+    public void spawnDoors()
     {
+        //TOP DOORS
+        //Spawn unlocked door
         if(topDoorType == 1)
         {
             GameObject door = Instantiate(closedDoor, transform.position, Quaternion.identity);
@@ -117,6 +184,7 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
             unlockedDoors.Add(door);
         }
+        //Spawn locked door
         else if(topDoorType == 2)
         {
             GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.identity);
@@ -128,6 +196,8 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
         }
 
+        //RIGHT DOORS
+        //Spawn unlocked door
         if(rightDoorType == 1)
         {
             GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, -90));
@@ -139,6 +209,7 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
             unlockedDoors.Add(door);
         }
+        //Spawn locked door
         else if (rightDoorType == 2)
         {
             GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, -90));
@@ -150,6 +221,8 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
         }
 
+        //BOTTOM DOORS
+        //Spawn unlocked door
         if (bottomDoorType == 1)
         {
             GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, 180));
@@ -161,6 +234,7 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
             unlockedDoors.Add(door);
         }
+        //Spawn locked door
         else if (bottomDoorType == 2)
         {
             GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, 180));
@@ -172,6 +246,8 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
         }
 
+        //LEFT DOORS
+        //Spawn unlocked door
         if (leftDoorType == 1)
         {
             GameObject door = Instantiate(closedDoor, transform.position, Quaternion.Euler(0, 0, -270));
@@ -183,6 +259,7 @@ public class DoorCheck : MonoBehaviour
             doors.Add(door);
             unlockedDoors.Add(door);
         }
+        //Spawn locked door
         else if (leftDoorType == 2)
         {
             GameObject door = Instantiate(lockedDoor, transform.position, Quaternion.Euler(0, 0, -270));
@@ -193,11 +270,12 @@ public class DoorCheck : MonoBehaviour
             leftDoorSpawned = true;
             doors.Add(door);
         }
+        //Destroy collider used by other rooms to check for doors
         Destroy(collide);
     }
 
-
-    void checkDoors()
+    //Check if surrounding rooms have doors to here
+    public void checkDoors()
     {
         if (topDoor)
         {

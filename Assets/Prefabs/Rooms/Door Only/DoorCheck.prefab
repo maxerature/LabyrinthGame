@@ -63,6 +63,9 @@ MonoBehaviour:
   lockedDoor: {fileID: 1527602618668521068, guid: ab1160e9f2862854e9349726df5b8485, type: 3}
   closedDoor: {fileID: 2919128041290466116, guid: 02b827f74d755fe46a84096559a431d0, type: 3}
   openDoorPrefab: {fileID: 2925342100437498734, guid: c1cbfdae936fed346a326c7309572e90, type: 3}
+  itemPrefab: {fileID: 8462388475787462748, guid: 04c49ceb7cba1134a8be043915488774, type: 3}
+  pitPrefab: {fileID: 7029960437908561842, guid: b24b8b3fa1154d840b2361ff1fa0f3fe, type: 3}
+  pillarPrefab: {fileID: 2783562842882426193, guid: 02f0ee83b0081bd4d997ffecec2b16d1, type: 3}
   enemyTypes:
   - {fileID: 6710875609824945713, guid: f0da39e1a02250941be9f947578f0dba, type: 3}
   - {fileID: 6710875609824945713, guid: d449758a8c999b043bb80c4db10553ed, type: 3}
@@ -70,6 +73,7 @@ MonoBehaviour:
   - {fileID: 6710875609824945713, guid: 14f5aa81439e69f4d9af52ec9c550670, type: 3}
   - {fileID: 6710875609824945713, guid: b55c62f5f02fc544bb75d209def46699, type: 3}
   - {fileID: 6710875609824945713, guid: 0d944f731a6271a478828e6b496d9310, type: 3}
+  - {fileID: 6710875609824945713, guid: 15183a723ad24d74f990c58b952e854b, type: 3}
   topDoor: 0
   rightDoor: 0
   bottomDoor: 0
@@ -90,3 +94,5 @@ MonoBehaviour:
   bottomRoom: {fileID: 0}
   leftRoom: {fileID: 0}
   safeRoom: 0
+  itemRoom: 0
+  enemyCount: 0

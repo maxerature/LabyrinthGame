@@ -4,103 +4,172 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed = 10f;
-    //public Animator animation;
-    public float maxHealth;
+    //Base Stats
+    public float baseMoveSpeed = 10f;
+    public float baseMaxHealth;
     public float health;
+    public float baseRange;
+    public float baseDamage;
+    public float baseKnockback;
+    public float baseRegenRate;
+    public float baseRegenTimer;
+
+    //Components
+    private Rigidbody2D rb;
+    Camera viewCamera;
+    public GameObject bulletPrefab;
+    public GameObject healthBar;
+    [SerializeField] private FieldOfView fieldOfView;
+    private HealthBar hbscript;
+    public GameObject canvas;
+
+    //Invincibility and Timers
+    public float invincibilityTime;
+    private bool invincible = false;
+    public float invincibilityTimeRemaining;
+    public float regenTimerRemaining;
+
+    //Item Stats
+    public List<string> items;
+    public float killRegen;
+    public float damTimerDec;
+    public float moveSpeed;
+    public float maxHealth;
     public float range;
     public float damage;
     public float knockback;
-    public float invincibilityTime;
+    public float regenRate;
+    public float regenTimer;
 
-    private Rigidbody2D rb;
-
-    private bool invincible = false;
-    public float invincibilityTimeRemaining;
-    public GameObject bulletPrefab;
-
-    Camera viewCamera;
-
-    public GameObject healthBar;
-    [SerializeField] private FieldOfView fieldOfView;
-
+    private bool activateMouse;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Setup Components
         rb = gameObject.GetComponent<Rigidbody2D>();
-
         viewCamera = Camera.main;
-
         viewCamera.enabled = false;
+        activateMouse = false;
+        hbscript = healthBar.GetComponent<HealthBar>();
 
-        //animation = GetComponent<Animator>();
 
-        if (rb == null)
-        {
-            Debug.LogError("Player::Start cant find RigidBody2D </sadface>");
-        }
-        rb.drag = 5;
-        rb.gravityScale = 0;
+        //Activate functions with delay
+        Invoke("levelSetup", 10f);
 
-        //gameObject.SetActive(false);
-        Invoke("levelSetup", 7f);
+        //Set stats to base stats
+        moveSpeed = baseMoveSpeed;
+        maxHealth = baseMaxHealth;
+        health = maxHealth;
+        range = baseRange;
+        damage = baseDamage;
+        knockback = baseKnockback;
+        regenRate = baseRegenRate;
+        regenTimer = baseRegenTimer;
+        HUDController hud = canvas.GetComponent<HUDController>();
+        hud.setHealthText(health, maxHealth);
+        hud.updateTexts((float)range / baseRange, (float)damage / baseDamage, (float)knockback / baseKnockback, (float)regenRate / baseRegenRate, (float)killRegen, (float)damTimerDec, (float)moveSpeed / baseMoveSpeed);
     }
 
+    //Sets up the game after level generation.
     void levelSetup()
     {
-        //gameObject.SetActive(true);
         Vector3 pos = new Vector3(0, 0, 0);
         transform.position = pos;
         viewCamera.enabled = true;
+
+        //Stats Setup (Duplicate)
+        moveSpeed = baseMoveSpeed;
+        maxHealth = baseMaxHealth;
+        range = baseRange;
+        damage = baseDamage;
+        knockback = baseKnockback;
+        regenRate = baseRegenRate;
+        regenTimer = baseRegenTimer;
+        activateMouse = true;
+        hbscript.SetSize(1f);
+    }
+
+    //Regenerate
+    void Regenerate()
+    {
+        if (health < maxHealth)
+        {
+            regenTimerRemaining -= Time.deltaTime;
+            if (regenTimerRemaining <= 0)
+            {
+                health += regenRate;
+                if (health > maxHealth)
+                    health = maxHealth;
+                float healthPerc = health / maxHealth;
+                hbscript.SetSize(healthPerc);
+                HUDController hud = canvas.GetComponent<HUDController>();
+                hud.setHealthText(health, maxHealth);
+
+                regenTimerRemaining = regenTimer;
+            }
+        }
+    }
+
+    //Shoot bullet
+    void Shoot(Vector3 aimDir)
+    {
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
+        proj.direction = (aimDir).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, aimDir, range, 1 << LayerMask.NameToLayer("Targets"));
+        if (hit.collider != null)
+        {
+            GameObject other = hit.collider.gameObject;
+            enemyAI otherScript = other.GetComponent<enemyAI>();
+            if (otherScript != null)
+            {
+                otherScript.onTakeDamage(damage, knockback);
+            }
+        }
     }
         
+
     void Update() {
+        //Regeneration
+        Regenerate();
+
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        
+        //Destroy script on death
         if(health <= 0)
         {
             Destroy(this);
         }
 
-        Vector3 targetPosition = GetMouseWorldPosition();
-        Vector3 aimDir = (targetPosition - transform.position).normalized;
-
-        Vector3 vectorToTarget = targetPosition - transform.position;
-        Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
-        Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-        transform.rotation = targetRotation;
-
-        fieldOfView.SetAimDirection(aimDir);
-        fieldOfView.SetOrigin(transform.position);
-
-
-        if (Input.GetMouseButtonDown(0))
+        if (activateMouse)
         {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
-            proj.direction = (aimDir).normalized;
+            //Get Aim direction and rotate
+            Vector3 targetPosition = GetMouseWorldPosition();
+            Vector3 aimDir = (targetPosition - transform.position).normalized;
+            Vector3 vectorToTarget = targetPosition - transform.position;
+            Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
+            Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+            transform.rotation = targetRotation;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, aimDir, range, 1 << LayerMask.NameToLayer("Targets"));
-            if (hit.collider != null)
+            //Rotate field of view.
+            fieldOfView.SetAimDirection(aimDir);
+            fieldOfView.SetOrigin(transform.position);
+
+            //Shoot on LMB
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log(hit.collider);
-                GameObject other = hit.collider.gameObject;
-                enemyAI otherScript = other.GetComponent<enemyAI>();
-                Debug.Log(other);
-                if (otherScript != null)
-                {
-                    otherScript.onTakeDamage(damage, knockback);
-                }
-                else
-                    Debug.Log("no component");
-            }
-            else
-            {
-                Debug.Log("nothing hit");
+                Shoot(aimDir);
             }
         }
 
+        //Reduce Invincibility Timer
         if (invincible)
         {
             invincibilityTimeRemaining -= Time.deltaTime;
@@ -128,7 +197,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    //Helper functions for aiming
     public static Vector3 GetMouseWorldPosition()
     {
         Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
@@ -150,8 +219,10 @@ public class Player : MonoBehaviour
     }
 
 
+    //Collision with hurtbox
     void OnTriggerEnter2D(Collider2D col)
     {
+        //If enemy
         if (col.gameObject.layer == 8)
         {
             if (!invincible)
@@ -176,7 +247,26 @@ public class Player : MonoBehaviour
                 float healthPerc = health / maxHealth;
                 HealthBar hbscript = healthBar.GetComponent<HealthBar>();
                 hbscript.SetSize(healthPerc);
+                HUDController hud = canvas.GetComponent<HUDController>();
+                hud.setHealthText(health, maxHealth);
+            }
+        }
+
+        //If item
+        else if(col.gameObject.tag == "Item")
+        {
+            GameObject item = col.gameObject;
+            Destroy(col);
+            items.Add(item.name);
+            ItemHandler ih = item.GetComponent<ItemHandler>();
+            ih.onPickup(gameObject, this);
+            HUDController hud = canvas.GetComponent<HUDController>();
+            hud.updateTexts((float)range / baseRange, (float)damage / baseDamage, (float)knockback / baseKnockback, (float)regenRate / baseRegenRate, (float)killRegen, (float)damTimerDec, (float)moveSpeed/baseMoveSpeed);
+            if (item)
+            {
+                Destroy(item);
             }
         }
     }
+
 }

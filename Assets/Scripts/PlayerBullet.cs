@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-
+    //Stats
     public Vector2 direction;
     public float speed;
 
+    //Components
     private Rigidbody2D rb;
 
         

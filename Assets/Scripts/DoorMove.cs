@@ -6,17 +6,13 @@ public class DoorMove : MonoBehaviour
 {
     public GameObject currentRoom;
     public DoorCheck doorCheck;
+
+
     // Start is called before the first frame update
     void Start()
     {
         currentRoom = gameObject.transform.parent.transform.gameObject.transform.parent.transform.gameObject;
         doorCheck = currentRoom.GetComponent<DoorCheck>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
