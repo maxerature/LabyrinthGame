@@ -287,7 +287,7 @@ public class DoorCheck : MonoBehaviour
                 GameObject room = roomCollider.gameObject;
                 topRoom = room.transform.parent.transform.gameObject;
                 DoorCheck otherDoor = room.GetComponent<DoorCheck>();
-                if (otherDoor.bottomDoor)
+                if (otherDoor != null && otherDoor.bottomDoor)
                 {
                     topDoorType = 1;
                 }
@@ -305,7 +305,7 @@ public class DoorCheck : MonoBehaviour
                 GameObject room = roomCollider.gameObject;
                 rightRoom = room.transform.parent.transform.gameObject;
                 DoorCheck otherDoor = room.GetComponent<DoorCheck>();
-                if (otherDoor.leftDoor)
+                if (otherDoor != null && otherDoor.leftDoor)
                 {
                     rightDoorType = 1;
                 }
@@ -323,7 +323,7 @@ public class DoorCheck : MonoBehaviour
                 GameObject room = roomCollider.gameObject;
                 bottomRoom = room.transform.parent.transform.gameObject;
                 DoorCheck otherDoor = room.GetComponent<DoorCheck>();
-                if (otherDoor.topDoor)
+                if (otherDoor != null && otherDoor.topDoor)
                 {
                     bottomDoorType = 1;
                 }
@@ -341,7 +341,7 @@ public class DoorCheck : MonoBehaviour
                 GameObject room = roomCollider.gameObject;
                 leftRoom = room.transform.parent.transform.gameObject;
                 DoorCheck otherDoor = room.GetComponent<DoorCheck>();
-                if (otherDoor.rightDoor)
+                if (otherDoor != null && otherDoor.rightDoor)
                 {
                     leftDoorType = 1;
                 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -91,6 +92,7 @@ public class Player : MonoBehaviour
         regenRate = baseRegenRate;
         regenTimer = baseRegenTimer;
         activateMouse = true;
+        health = maxHealth;
         hbscript.SetSize(1f);
     }
 
@@ -118,7 +120,9 @@ public class Player : MonoBehaviour
     //Shoot bullet
     void Shoot(Vector3 aimDir)
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Vector3 pos = transform.position;
+        pos += transform.right * 0.5f;
+        GameObject bullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
         PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
         proj.direction = (aimDir).normalized;
 
@@ -150,6 +154,7 @@ public class Player : MonoBehaviour
         //Destroy script on death
         if(health <= 0)
         {
+            SceneManager.LoadScene("Menu");
             Destroy(this);
         }
 
