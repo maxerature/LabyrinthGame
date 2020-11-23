@@ -10,13 +10,15 @@ public class MusicManager : MonoBehaviour
     {
         None,
         Menu,
-        Game
+        Game,
+        Boss
     }
 
     public static MusicManager instance;
     public AudioSource audioSource;
     public AudioClip menuMusic;
     public AudioClip gameMusic;
+    public AudioClip bossMusic;
 
     void Awake()
     {
@@ -49,6 +51,12 @@ public class MusicManager : MonoBehaviour
                     return;
                 audioSource.clip = gameMusic;
                 //unsure how long it takes to load, adding artifical delay
+                audioSource.Play();
+                break;
+            case Tracks.Boss:
+                if (audioSource.clip == bossMusic)
+                    return;
+                audioSource.clip = menuMusic;
                 audioSource.Play();
                 break;
         }
