@@ -37,6 +37,12 @@ public class DoorCheck : MonoBehaviour
     public List<GameObject> unlockedDoors;
     private Collider2D collide;
 
+    //SFX Components
+    public AudioSource audioSource;
+    public AudioClip doorOpenSFX;
+    public AudioClip unlockDoorSFX;
+    public AudioClip doorCloseSFX;
+
     //Reference to surrounding rooms.
     public GameObject topRoom;
     public GameObject rightRoom;
@@ -65,7 +71,6 @@ public class DoorCheck : MonoBehaviour
 
     void Update()
     {
-        
         if(enemyCount == 0  && !opened)
         {
             for(int i=0; i<unlockedDoors.Count; i++)
@@ -165,6 +170,8 @@ public class DoorCheck : MonoBehaviour
                     ih.setType(Random.Range(0, 8));
                 }
             }
+            //door open sound effect playing after enemies are defeated
+            audioSource.PlayOneShot(doorOpenSFX);
         }
     }
 
@@ -349,6 +356,11 @@ public class DoorCheck : MonoBehaviour
                     leftDoorType = 2;
             }
         }
+    }
+
+    public void playDoorCloseSFX()
+    {
+        MusicManager.instance.audioSource.PlayOneShot(doorCloseSFX);
     }
 }
 

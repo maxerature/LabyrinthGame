@@ -228,11 +228,10 @@ MonoBehaviour:
   - {fileID: 767332047503819201, guid: 1de6fd712ae14924999532d4921104a6, type: 3}
   - {fileID: 4537974540144286089, guid: e69647dcbe1c59b469212f2770bb437a, type: 3}
   closedRoom: {fileID: 2017318881289581962, guid: 1cae215c1d1252945baca8a51684bb54, type: 3}
-  rooms: []
-  waitTime: 4
-  spawnedBoss: 0
   boss: {fileID: 6477069647692791573, guid: 53e13e48b93ff4a458cfca99f0fd7b5b, type: 3}
   spawn: {fileID: 3232024259088506231, guid: 65a3a33a752bbf149bc08e82129fa0f0, type: 3}
+  rooms: []
+  waitTime: 4
 --- !u!1 &4914112215042520153
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,11 +312,10 @@ MonoBehaviour:
   openLeftRooms: []
   openRightRooms: []
   closedRoom: {fileID: 2017318881289581962, guid: 1cae215c1d1252945baca8a51684bb54, type: 3}
-  rooms: []
-  waitTime: 4
-  spawnedBoss: 0
   boss: {fileID: 6477069647692791573, guid: 53e13e48b93ff4a458cfca99f0fd7b5b, type: 3}
   spawn: {fileID: 3232024259088506231, guid: 65a3a33a752bbf149bc08e82129fa0f0, type: 3}
+  rooms: []
+  waitTime: 4
 --- !u!1 &4914112216784840027
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,11 +412,10 @@ MonoBehaviour:
   openLeftRooms: []
   openRightRooms: []
   closedRoom: {fileID: 2017318881289581962, guid: 1cae215c1d1252945baca8a51684bb54, type: 3}
-  rooms: []
-  waitTime: 4
-  spawnedBoss: 0
   boss: {fileID: 6477069647692791573, guid: 53e13e48b93ff4a458cfca99f0fd7b5b, type: 3}
   spawn: {fileID: 3232024259088506231, guid: 65a3a33a752bbf149bc08e82129fa0f0, type: 3}
+  rooms: []
+  waitTime: 4
 --- !u!1001 &4914112215718558698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -433,6 +430,10 @@ PrefabInstance:
     - target: {fileID: 18410271717504940, guid: fdd197728d706754b93fb2f2c401ad6d, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 794771536213147814, guid: fdd197728d706754b93fb2f2c401ad6d, type: 3}
+      propertyPath: Priority
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1280116068838302798, guid: fdd197728d706754b93fb2f2c401ad6d, type: 3}
       propertyPath: m_LocalScale.x
@@ -474,6 +475,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7384836075034779016, guid: fdd197728d706754b93fb2f2c401ad6d, type: 3}
+      propertyPath: doorCloseSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e671555f0cec4047ab4a13674a78cb2, type: 3}
+    - target: {fileID: 7384836075034779016, guid: fdd197728d706754b93fb2f2c401ad6d, type: 3}
+      propertyPath: unlockDoorSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: e7fd6ce4e7d782740b1a219754621abd, type: 3}
+    - target: {fileID: 7384836075034779016, guid: fdd197728d706754b93fb2f2c401ad6d, type: 3}
+      propertyPath: doorOpenSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 25968ff8e7c52d74c8b1c433bb7992c1, type: 3}
     - target: {fileID: 7808257162200831800, guid: fdd197728d706754b93fb2f2c401ad6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.18765834
