@@ -15,7 +15,6 @@ public class DoorMove : MonoBehaviour
         doorCheck = currentRoom.GetComponent<DoorCheck>();
     }
 
-
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.transform.parent.transform.gameObject == null)
@@ -30,6 +29,7 @@ public class DoorMove : MonoBehaviour
             if (transform.position.x - currentRoom.transform.position.x > 0)
             {
                 doorCheck.rightRoom.SetActive(true);
+                doorCheck.playDoorCloseSFX();
                 newPos += new Vector3(5, 0, 0);
                 player.transform.position = newPos;
                 Camera.main.transform.Translate(20, 0, 0);
@@ -60,6 +60,7 @@ public class DoorMove : MonoBehaviour
                 Camera.main.transform.Translate(0, -20, 0);
                 currentRoom.transform.parent.gameObject.SetActive(false);
             }
+            doorCheck.playDoorCloseSFX();
         }
     }
 }
