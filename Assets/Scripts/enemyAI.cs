@@ -20,7 +20,12 @@ public class enemyAI : MonoBehaviour
     public Transform target;
     private Rigidbody2D rb;
     public GameObject projectilePrefab;
-    
+
+    //SFX Components
+    public AudioSource audioSource;
+    public AudioClip attackSFX;
+    public AudioClip takeDamageSFX;
+    public AudioClip dieSFX;
 
 
     // Start is called before the first frame update
@@ -57,6 +62,8 @@ public class enemyAI : MonoBehaviour
                 ProjectileData proj = projectile.GetComponent<ProjectileData>();
                 proj.direction = (target.position - transform.position).normalized;
                 proj.damage = attackPower;
+
+                audioSource.PlayOneShot(attackSFX);
             }
             else
                 attackCooldownRemaining -= Time.deltaTime;
@@ -104,9 +111,16 @@ public class enemyAI : MonoBehaviour
         health -= damage;
         transform.Translate(new Vector2(-knockback,0));
 
+        if(health > 0)
+        {
+            audioSource.PlayOneShot(takeDamageSFX);
+        }
+
         //If health = 0, die
         if(health <= 0)
         {
+            audioSource.PlayOneShot(dieSFX);
+
             GameObject roomControl = transform.parent.transform.gameObject;
             DoorCheck dc = roomControl.GetComponent<DoorCheck>();
 
