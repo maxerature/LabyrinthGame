@@ -116,20 +116,19 @@ public class enemyAI : MonoBehaviour
 
             animator.SetBool("death", true);
             //StartCoroutine(wait());
-            Destroy(gameObject);
+            Death();
             dc.enemyCount--;
             dc.enemyKilled();
         }
     }
 
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
 
     public void hit(Vector2 knockback)
     {
         rb.AddForce(knockback, ForceMode2D.Impulse);
-    }
-
-    IEnumerator wait()
-    {
-        yield return new WaitForSeconds(1);
     }
 }
