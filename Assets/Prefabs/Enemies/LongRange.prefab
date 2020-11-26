@@ -128,7 +128,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 2
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!95 &6030414382595091786
 Animator:
@@ -207,12 +207,9 @@ MonoBehaviour:
   firingInnerRange: 5
   attackCooldown: 4
   attackCooldownRemaining: 0
+  animator: {fileID: 6030414382595091786}
   target: {fileID: 0}
   projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
-  audioSource: {fileID: 0}
-  attackSFX: {fileID: 0}
-  takeDamageSFX: {fileID: 0}
-  dieSFX: {fileID: 0}
 --- !u!50 &6710875609824945724
 Rigidbody2D:
   serializedVersion: 4
