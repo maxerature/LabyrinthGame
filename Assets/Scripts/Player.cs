@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    //Base Stats
+    
     public float baseMoveSpeed = 10f;
     public float baseMaxHealth;
     public float health;
