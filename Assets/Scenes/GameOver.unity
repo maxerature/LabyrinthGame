@@ -282,7 +282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -664.18, y: -89.57}
+  m_AnchoredPosition: {x: -639.2101, y: -89.57004}
   m_SizeDelta: {x: 128.08923, y: 100.78363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400272099
@@ -814,7 +814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000076294, y: 346}
+  m_AnchoredPosition: {x: 0, y: 294}
   m_SizeDelta: {x: 780.1072, y: 225.34753}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1266462679
@@ -896,7 +896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -664.13, y: -189.98}
+  m_AnchoredPosition: {x: -639.16, y: -189.98}
   m_SizeDelta: {x: 127.99234, y: 100.03464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1320835434
@@ -1545,6 +1545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1276414248698375870, guid: 9052ab1feab8b7d4a97e5c3135961183, type: 3}
+      propertyPath: menuMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 584e3dd6695abd6488aa7ba6ec0b26ea, type: 3}
     - target: {fileID: 1276414248698375871, guid: 9052ab1feab8b7d4a97e5c3135961183, type: 3}
       propertyPath: m_Volume
       value: 0.389
