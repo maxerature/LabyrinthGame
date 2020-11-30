@@ -57,6 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6710875609422451167}
   - component: {fileID: 6710875609422451160}
+  - component: {fileID: 8181528117434141181}
   m_Layer: 8
   m_Name: New Sprite
   m_TagString: Untagged
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6710875609422451166}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.19, y: 0.19, z: 1}
   m_Children: []
@@ -129,6 +130,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8181528117434141181
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710875609422451166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 870b0943807604444a3b64bd41afcbe5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6710875609824945713
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,18 +197,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37874037b6f880a4380f7efd96e2c8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   moveSpeed: 3
+  ranged: 1
   attackPower: 5
   health: 3
-  ranged: 1
   attemptedOuterDistance: 5
   attemptedInnerDistance: 2
   firingOuterRange: 5
   firingInnerRange: 3
-  projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
   attackCooldown: 2
   attackCooldownRemaining: 0
+  target: {fileID: 0}
+  projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
+  audioSource: {fileID: 0}
+  attackSFX: {fileID: 0}
+  takeDamageSFX: {fileID: 0}
+  dieSFX: {fileID: 0}
+  animator: {fileID: 8181528117434141181}
 --- !u!50 &6710875609824945724
 Rigidbody2D:
   serializedVersion: 4
