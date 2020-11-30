@@ -5,10 +5,12 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour
 {
     public int itemType;
+    public Sprite[] sprites;
+    public SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public void setType(int itemType)
