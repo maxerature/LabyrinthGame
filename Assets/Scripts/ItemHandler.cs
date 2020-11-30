@@ -5,45 +5,57 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour
 {
     public int itemType;
+    public GameObject spriteObject;
     public Sprite[] sprites;
     public SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        sr = spriteObject.GetComponent<SpriteRenderer>();
+        setType(itemType);
     }
 
     public void setType(int itemType)
     {
         this.itemType = itemType;
+        sr = spriteObject.GetComponent<SpriteRenderer>();
         switch (itemType)
         {
             case 0: //Moderate regeneration on kill
                 gameObject.name = "Vampire Bullets";
+                sr.sprite = sprites[0];
                 break;
             case 1: //Speed boost
                 gameObject.name = "Normal Boots";
+                sr.sprite = sprites[1];
                 break;
             case 2: //Reduce regen timer on damage
                 gameObject.name = "Leech Seed";
+                sr.sprite = sprites[2];
                 break;
             case 3: //Health increase
                 gameObject.name = "Glowing Blue Mold";
+                sr.sprite = sprites[3];
                 break;
             case 4: //Regen timer decrease
                 gameObject.name = "Petrified Skull Charm";
+                sr.sprite = sprites[4];
                 break;
             case 5: //Range increase
                 gameObject.name = "Energized Gunpowder";
+                sr.sprite = sprites[5];
                 break;
             case 6: //Damage Increase
                 gameObject.name = "Steelbone Bullets";
+                sr.sprite = sprites[6];
                 break;
             case 7: //Knockback Increase
                 gameObject.name = "Power Jelly";
+                sr.sprite = sprites[7];
                 break;
             case 8: //Regen ammount
                 gameObject.name = "Structured Skin";
+                sr.sprite = sprites[8];
                 break;
         }
     }
