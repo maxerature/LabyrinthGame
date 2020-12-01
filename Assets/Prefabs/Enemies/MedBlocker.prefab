@@ -57,6 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6710875609422451167}
   - component: {fileID: 6710875609422451160}
+  - component: {fileID: 3897064597184128290}
   m_Layer: 8
   m_Name: New Sprite
   m_TagString: Untagged
@@ -71,13 +72,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6710875609422451166}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.19, y: 0.19, z: 1}
   m_Children: []
   m_Father: {fileID: 6710875609824945715}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &6710875609422451160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -129,6 +130,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3897064597184128290
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710875609422451166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d4720e24ae11104bbfc2f4f97576c8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6710875609824945713
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +175,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6710875609824945713}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
@@ -164,7 +184,7 @@ Transform:
   - {fileID: 6710875608928211227}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &6710875609824945714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,18 +197,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37874037b6f880a4380f7efd96e2c8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   moveSpeed: 6
+  ranged: 0
   attackPower: 5
   health: 5
-  ranged: 0
   attemptedOuterDistance: 5
   attemptedInnerDistance: 6
   firingOuterRange: 0
   firingInnerRange: 0
-  projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
   attackCooldown: 0
   attackCooldownRemaining: 0
+  target: {fileID: 0}
+  projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
+  audioSource: {fileID: 0}
+  attackSFX: {fileID: 0}
+  takeDamageSFX: {fileID: 0}
+  dieSFX: {fileID: 0}
+  animator: {fileID: 3897064597184128290}
 --- !u!50 &6710875609824945724
 Rigidbody2D:
   serializedVersion: 4

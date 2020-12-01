@@ -27,6 +27,8 @@ public class enemyAI : MonoBehaviour
     public AudioClip takeDamageSFX;
     public AudioClip dieSFX;
 
+    //Animator
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -64,9 +66,13 @@ public class enemyAI : MonoBehaviour
                 proj.damage = attackPower;
 
                 audioSource.PlayOneShot(attackSFX);
+                animator.SetBool("Shoot", true);
             }
             else
+            {
                 attackCooldownRemaining -= Time.deltaTime;
+                animator.SetBool("Shoot", false);
+            }
         }
     }
 
@@ -74,6 +80,10 @@ public class enemyAI : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 lastPos = transform.position;
+
+        //Animate Walking
+        animator.SetFloat("Speed", Mathf.Abs(moveSpeed));
+        animator.SetFloat("rotation", transform.rotation.z);
 
         //If too far from player, move closer
         if (Vector3.Distance(transform.position, target.position) > attemptedOuterDistance)
