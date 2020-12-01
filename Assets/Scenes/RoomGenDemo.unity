@@ -1787,6 +1787,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2477213036424780054, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477213036424780054, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4063067949989035984, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
       propertyPath: m_Name
       value: Character
@@ -1847,6 +1855,14 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1530376474}
+    - target: {fileID: 4063067949989035999, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: takeDamageSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: aa6b2b5a80b28414c80fcf4ec7620d67, type: 3}
+    - target: {fileID: 4063067949989035999, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: walkingSFX
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4063067950525832548, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
       propertyPath: m_SortingOrder
       value: 100
