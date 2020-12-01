@@ -43,6 +43,7 @@ public class DoorCheck : MonoBehaviour
     public AudioClip doorOpenSFX;
     public AudioClip unlockDoorSFX;
     public AudioClip doorCloseSFX;
+    public MusicManager playBossMusic;
 
     //Reference to surrounding rooms.
     public GameObject topRoom;
@@ -155,6 +156,8 @@ public class DoorCheck : MonoBehaviour
                 GameObject enemy = Instantiate(bossPrefab, transform.position, Quaternion.identity);
                 enemy.transform.parent = gameObject.transform;
                 enemies.Add(enemy);
+                //findme
+                playBossMusic.PlayTrack(MusicManager.Tracks.Boss);
             }
         }
         opened = false;
