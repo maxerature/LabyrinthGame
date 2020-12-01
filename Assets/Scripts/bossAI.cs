@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class bossAI : MonoBehaviour
 {
@@ -121,12 +122,7 @@ public class bossAI : MonoBehaviour
         {
             audioSource.PlayOneShot(dieSFX);
 
-            GameObject roomControl = transform.parent.transform.gameObject;
-            DoorCheck dc = roomControl.GetComponent<DoorCheck>();
-
-            Destroy(gameObject);
-            dc.enemyCount--;
-            dc.enemyKilled();
+            SceneManager.LoadScene("GameOver");
         }
     }
 
