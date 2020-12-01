@@ -125,7 +125,8 @@ public class Player : MonoBehaviour
     void Shoot(Vector3 aimDir)
     {
         Vector3 pos = transform.position;
-        pos += transform.right * 0.5f;
+        //pos += transform.right * 0.5f;
+        pos += aimDir * 0.5f;
         GameObject bullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
         PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
         proj.direction = (aimDir).normalized;
@@ -170,7 +171,7 @@ public class Player : MonoBehaviour
             Vector3 vectorToTarget = targetPosition - transform.position;
             Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
             Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-            transform.rotation = targetRotation;
+            //transform.rotation = targetRotation;
 
             //Rotate field of view.
             fieldOfView.SetAimDirection(aimDir);
