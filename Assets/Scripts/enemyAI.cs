@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class enemyAI : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class enemyAI : MonoBehaviour
     public AudioClip takeDamageSFX;
     public AudioClip dieSFX;
 
+    public bool isBoss;
+
     //Animator
     public Animator animator;
 
@@ -43,13 +46,15 @@ public class enemyAI : MonoBehaviour
     void Update()
     {
         //Lookat player
-        transform.LookAt(target.position);
-        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+        if (health > 0)
+        {
+            transform.LookAt(target.position);
+            transform.Rotate(new Vector3(0, -90, 0), Space.Self);
 
-        //Attacks
-        if (ranged)
-            shoot();
-            
+            //Attacks
+            if (ranged)
+                shoot();
+        }
     }
 
     //Function to a projectile shoot at player
@@ -129,6 +134,12 @@ public class enemyAI : MonoBehaviour
         //If health = 0, die
         if(health <= 0)
         {
+            if (isBoss)
+            {
+                animator.SetBool("death", true);
+                rb.velocity = new Vector2(0, 0);
+                Invoke("winCall", 7.5f);
+            }
             MusicManager.instance.audioSource.pitch = Random.Range(0.75f, 1.1f);
             MusicManager.instance.audioSource.PlayOneShot(dieSFX);
 
@@ -138,7 +149,13 @@ public class enemyAI : MonoBehaviour
             Destroy(gameObject);
             dc.enemyCount--;
             dc.enemyKilled();
+            
         }
+    }
+
+    void winCall()
+    {
+        SceneManager.LoadScene("WinMenu");
     }
 
 
