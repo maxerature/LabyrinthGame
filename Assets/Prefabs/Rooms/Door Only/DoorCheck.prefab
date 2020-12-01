@@ -75,6 +75,7 @@ MonoBehaviour:
   - {fileID: 6710875609824945713, guid: b55c62f5f02fc544bb75d209def46699, type: 3}
   - {fileID: 6710875609824945713, guid: 0d944f731a6271a478828e6b496d9310, type: 3}
   - {fileID: 6710875609824945713, guid: 15183a723ad24d74f990c58b952e854b, type: 3}
+  bossPrefab: {fileID: 6710875609824945713, guid: 1a7eb490f2839794790c9ff54a57f182, type: 3}
   topDoor: 0
   rightDoor: 0
   bottomDoor: 0
