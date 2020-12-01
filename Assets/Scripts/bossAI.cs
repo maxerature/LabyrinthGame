@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyAI : MonoBehaviour
+public class bossAI : MonoBehaviour
 {
     //Stats
     public float moveSpeed;
