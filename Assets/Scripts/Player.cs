@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public AudioClip walkingSFX;
     public AudioClip takeDamageSFX;
     public AudioClip dyingSFX;
+    private bool enableDamageSFX = false;
 
     //Invincibility and Timers
     public float invincibilityTime;
@@ -262,10 +263,11 @@ public class Player : MonoBehaviour
                 HUDController hud = canvas.GetComponent<HUDController>();
                 hud.setHealthText(health, maxHealth);
 
-                if (health != 0) {
-                    audioSource.pitch = Random.Range(0.85f, 1.20f);
+                if (health != 0 && enableDamageSFX) {
+                    audioSource.pitch = Random.Range(0.85f, 1.15f);
                     audioSource.PlayOneShot(takeDamageSFX);
                 }
+                enableDamageSFX = true;
             }
         }
 

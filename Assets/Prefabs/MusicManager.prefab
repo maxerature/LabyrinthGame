@@ -48,6 +48,8 @@ MonoBehaviour:
   menuMusic: {fileID: 8300000, guid: a16406bd4a3f3574d98599cdaa469eb9, type: 3}
   gameMusic: {fileID: 8300000, guid: f124e5f57ffbc464cb02c7c0cae97ba5, type: 3}
   bossMusic: {fileID: 8300000, guid: c0fcd84f620350d429437c3f18e4078f, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: 584e3dd6695abd6488aa7ba6ec0b26ea, type: 3}
+  victoryMusic: {fileID: 8300000, guid: df6937bd6309da24da43808a23399b77, type: 3}
 --- !u!82 &1276414248698375871
 AudioSource:
   m_ObjectHideFlags: 0
