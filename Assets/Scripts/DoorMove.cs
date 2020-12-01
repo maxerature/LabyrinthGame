@@ -61,6 +61,7 @@ public class DoorMove : MonoBehaviour
                 currentRoom.transform.parent.gameObject.SetActive(false);
             }
             doorCheck.playDoorCloseSFX();
+            doorCheck.activateBossMusic();
         }
     }
 }
