@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
         //Destroy script on death
         if(health <= 0)
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("GameOver");
             Destroy(this);
         }
 
