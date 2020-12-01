@@ -11,7 +11,9 @@ public class MusicManager : MonoBehaviour
         None,
         Menu,
         Game,
-        Boss
+        Boss,
+        GameOver,
+        Victory
     }
 
     public static MusicManager instance;
@@ -19,6 +21,8 @@ public class MusicManager : MonoBehaviour
     public AudioClip menuMusic;
     public AudioClip gameMusic;
     public AudioClip bossMusic;
+    public AudioClip gameOverMusic;
+    public AudioClip victoryMusic;
 
     void Awake()
     {
@@ -50,13 +54,24 @@ public class MusicManager : MonoBehaviour
                 if (audioSource.clip == gameMusic)
                     return;
                 audioSource.clip = gameMusic;
-                //unsure how long it takes to load, adding artifical delay
                 audioSource.Play();
                 break;
             case Tracks.Boss:
                 if (audioSource.clip == bossMusic)
                     return;
                 audioSource.clip = menuMusic;
+                audioSource.Play();
+                break;
+            case Tracks.GameOver:
+                if (audioSource.clip == gameOverMusic)
+                    return;
+                audioSource.clip = gameOverMusic;
+                audioSource.Play();
+                break;
+            case Tracks.Victory:
+                if (audioSource.clip == victoryMusic)
+                    return;
+                audioSource.clip = victoryMusic;
                 audioSource.Play();
                 break;
         }
