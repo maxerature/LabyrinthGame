@@ -46,13 +46,15 @@ public class enemyAI : MonoBehaviour
     void Update()
     {
         //Lookat player
-        transform.LookAt(target.position);
-        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+        if (health > 0)
+        {
+            transform.LookAt(target.position);
+            transform.Rotate(new Vector3(0, -90, 0), Space.Self);
 
-        //Attacks
-        if (ranged)
-            shoot();
-            
+            //Attacks
+            if (ranged)
+                shoot();
+        }
     }
 
     //Function to a projectile shoot at player
@@ -134,7 +136,9 @@ public class enemyAI : MonoBehaviour
         {
             if (isBoss)
             {
-                SceneManager.LoadScene("WinMenu");
+                animator.SetBool("death", true);
+                rb.velocity = new Vector2(0, 0);
+                Invoke("winCall", 7.5f);
             }
             MusicManager.instance.audioSource.pitch = Random.Range(0.75f, 1.1f);
             MusicManager.instance.audioSource.PlayOneShot(dieSFX);
@@ -145,7 +149,13 @@ public class enemyAI : MonoBehaviour
             Destroy(gameObject);
             dc.enemyCount--;
             dc.enemyKilled();
+            
         }
+    }
+
+    void winCall()
+    {
+        SceneManager.LoadScene("WinMenu");
     }
 
 

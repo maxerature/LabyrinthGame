@@ -172,6 +172,7 @@ public class Player : MonoBehaviour
             Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
             Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
             //transform.rotation = targetRotation;
+            transform.rotation = Quaternion.identity;
 
             //Rotate field of view.
             fieldOfView.SetAimDirection(aimDir);
