@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class enemyAI : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class enemyAI : MonoBehaviour
     public AudioClip attackSFX;
     public AudioClip takeDamageSFX;
     public AudioClip dieSFX;
+
+    public bool isBoss;
 
     //Animator
     public Animator animator;
@@ -129,6 +132,10 @@ public class enemyAI : MonoBehaviour
         //If health = 0, die
         if(health <= 0)
         {
+            if (isBoss)
+            {
+                SceneManager.LoadScene("WinMenu");
+            }
             MusicManager.instance.audioSource.pitch = Random.Range(0.75f, 1.1f);
             MusicManager.instance.audioSource.PlayOneShot(dieSFX);
 
