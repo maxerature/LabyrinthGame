@@ -27,7 +27,8 @@ public class RoomTemplates : MonoBehaviour
     //Internal use variables
     public float waitTime;
     private bool spawnedBoss;
-    
+
+    public GameObject bossRoom;
 
     void Start()
     {
@@ -48,11 +49,14 @@ public class RoomTemplates : MonoBehaviour
     {
         if(waitTime <= 0 && !spawnedBoss)
         {
-            Instantiate(boss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+            int bossNum = rooms.Count - 1;
+            Instantiate(boss, rooms[bossNum].transform.position, Quaternion.identity);
+            bossRoom = rooms[bossNum];
             Instantiate(spawn, rooms[0].transform.position, Quaternion.identity);
             Debug.Log("Boss Spawned!");
             spawnedBoss = !spawnedBoss;
-
+            DoorCheck dc = rooms[bossNum].transform.Find("DoorCheck").gameObject.GetComponent<DoorCheck>();
+            dc.bossRoom = true;
         } else
         {
             waitTime -= Time.deltaTime;

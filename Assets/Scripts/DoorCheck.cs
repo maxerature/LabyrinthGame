@@ -12,6 +12,7 @@ public class DoorCheck : MonoBehaviour
     public GameObject pitPrefab;
     public GameObject pillarPrefab;
     public GameObject[] enemyTypes;
+    public GameObject bossPrefab;
 
     //Spawn Locations
     public bool topDoor;
@@ -56,6 +57,8 @@ public class DoorCheck : MonoBehaviour
 
     //If doors are opened
     private bool opened;
+    public bool bossRoom;
+
 
     // Start is called before the first frame update
     void Start()
@@ -88,26 +91,29 @@ public class DoorCheck : MonoBehaviour
     //Spawn obstacles in the room
     void spawnObstacles()
     {
-        Vector3 pos;
-        int type;
-        int obstacleCount = Random.Range(0, 75);
-        GameObject obstacle;
-        for(int i=0; i<obstacleCount; i++)
+        if (!bossRoom)
         {
-            pos = new Vector3(Random.Range(-7, 7), Random.Range(-7, 7), 0);
-            pos = transform.position + pos;
-
-            type = Random.Range(0, 2);  //0 = pit, 1 = pillar
-            switch(type)
+            Vector3 pos;
+            int type;
+            int obstacleCount = Random.Range(0, 75);
+            GameObject obstacle;
+            for (int i = 0; i < obstacleCount; i++)
             {
-                case 0:
-                    obstacle = Instantiate(pitPrefab, pos, Quaternion.identity);
-                    obstacle.transform.parent = gameObject.transform;
-                    break;
-                case 1:
-                    obstacle = Instantiate(pillarPrefab, pos, Quaternion.identity);
-                    obstacle.transform.parent = gameObject.transform;
-                    break;
+                pos = new Vector3(Random.Range(-7, 7), Random.Range(-7, 7), 0);
+                pos = transform.position + pos;
+
+                type = Random.Range(0, 2);  //0 = pit, 1 = pillar
+                switch (type)
+                {
+                    case 0:
+                        obstacle = Instantiate(pitPrefab, pos, Quaternion.identity);
+                        obstacle.transform.parent = gameObject.transform;
+                        break;
+                    case 1:
+                        obstacle = Instantiate(pillarPrefab, pos, Quaternion.identity);
+                        obstacle.transform.parent = gameObject.transform;
+                        break;
+                }
             }
         }
     }
@@ -115,20 +121,29 @@ public class DoorCheck : MonoBehaviour
     //Spawn enemies in the room
     void spawnEnemies()
     {
-        if(!safeRoom)
+        if (!safeRoom)
         {
-            enemyCount = Random.Range(2, 10);
-            int randType;
-
-            for(int i=0; i<enemyCount; i++)
+            if (!bossRoom)
             {
-                randType = Random.Range(0, enemyTypes.Length);
-                GameObject enemy = Instantiate(enemyTypes[randType], transform.position, Quaternion.identity);
-                enemy.transform.parent = gameObject.transform;
+                enemyCount = Random.Range(2, 10);
+                int randType;
 
-                Vector3 pos = new Vector3(Random.Range(-6, 7), Random.Range(-6, 7), 0);
-                pos = enemy.transform.position + pos;
-                enemy.transform.position = pos;
+                for (int i = 0; i < enemyCount; i++)
+                {
+                    randType = Random.Range(0, enemyTypes.Length);
+                    GameObject enemy = Instantiate(enemyTypes[randType], transform.position, Quaternion.identity);
+                    enemy.transform.parent = gameObject.transform;
+
+                    Vector3 pos = new Vector3(Random.Range(-6, 7), Random.Range(-6, 7), 0);
+                    pos = enemy.transform.position + pos;
+                    enemy.transform.position = pos;
+                    enemies.Add(enemy);
+                }
+            }
+            else
+            {
+                GameObject enemy = Instantiate(bossPrefab, transform.position, Quaternion.identity);
+                enemy.transform.parent = gameObject.transform;
                 enemies.Add(enemy);
             }
         }
