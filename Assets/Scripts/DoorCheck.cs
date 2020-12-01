@@ -60,8 +60,6 @@ public class DoorCheck : MonoBehaviour
     private bool opened;
     public bool bossRoom;
 
-    private bool[] xPos = new bool[15];
-    private bool[] yPos = new bool[15];
 
     // Start is called before the first frame update
     void Start()
@@ -101,7 +99,8 @@ public class DoorCheck : MonoBehaviour
             int obstacleCount = Random.Range(0, 75);
             GameObject obstacle;
 
-            
+            bool[] xPos = new bool[15];
+            bool[] yPos = new bool[15];
             for (int i = 0; i < obstacleCount; i++)
             {
                 pos = new Vector3(Random.Range(-7, 7), Random.Range(-7, 7), 0);
@@ -146,11 +145,7 @@ public class DoorCheck : MonoBehaviour
                     GameObject enemy = Instantiate(enemyTypes[randType], transform.position, Quaternion.identity);
                     enemy.transform.parent = gameObject.transform;
 
-                    Vector3 pos = new Vector3(Random.Range(-6, 6), Random.Range(-6, 6), 0);
-                    if (xPos[(int)(pos.x + 6)] && yPos[(int)(pos.y + 6)])
-                    {
-                        continue;
-                    }
+                    Vector3 pos = new Vector3(Random.Range(-6, 7), Random.Range(-6, 7), 0);
                     pos = enemy.transform.position + pos;
                     enemy.transform.position = pos;
                     enemies.Add(enemy);
@@ -185,12 +180,9 @@ public class DoorCheck : MonoBehaviour
             {
                 for (int i = Random.Range(1, 4); i > 0; i--)
                 {
-                    if (!(xPos[(int)(0)] && yPos[(int)(0)]))
-                    {
-                        GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
-                        ItemHandler ih = item.GetComponent<ItemHandler>();
-                        ih.setType(Random.Range(0, 8));
-                    }
+                    GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                    ItemHandler ih = item.GetComponent<ItemHandler>();
+                    ih.setType(Random.Range(0, 8));
                 }
             }
             else
@@ -199,12 +191,9 @@ public class DoorCheck : MonoBehaviour
                 Debug.Log(itemChance);
                 if (itemChance == 4)
                 {
-                    if (!(xPos[(int)(0)] && yPos[(int)(0)]))
-                    {
-                        GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
-                        ItemHandler ih = item.GetComponent<ItemHandler>();
-                        ih.setType(Random.Range(0, 8));
-                    }
+                    GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                    ItemHandler ih = item.GetComponent<ItemHandler>();
+                    ih.setType(Random.Range(0, 8));
                 }
             }
             //door open sound effect playing after enemies are defeated
