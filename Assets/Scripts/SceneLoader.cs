@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void LoadStartGame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("LoadScreen");
     }
     public void QuitGame()
     {

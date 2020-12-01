@@ -207,7 +207,6 @@ MonoBehaviour:
   firingInnerRange: 0
   attackCooldown: 0
   attackCooldownRemaining: 0
-  animator: {fileID: 0}
   target: {fileID: 0}
   projectilePrefab: {fileID: 508558319401575330, guid: 0263954435eaa3f41b5245d161d6bde5, type: 3}
   audioSource: {fileID: 0}
