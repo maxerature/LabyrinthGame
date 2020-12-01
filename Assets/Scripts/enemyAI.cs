@@ -83,7 +83,7 @@ public class enemyAI : MonoBehaviour
 
         //Animate Walking
         animator.SetFloat("Speed", Mathf.Abs(moveSpeed));
-        animator.SetFloat("rotation", transform.rotation.z);
+        
 
         //If too far from player, move closer
         if (Vector3.Distance(transform.position, target.position) > attemptedOuterDistance)
