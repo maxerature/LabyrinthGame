@@ -91,9 +91,9 @@ MonoBehaviour:
   doors: []
   unlockedDoors: []
   audioSource: {fileID: 517048336667168501}
-  doorOpenSFX: {fileID: 8300000, guid: 25968ff8e7c52d74c8b1c433bb7992c1, type: 3}
-  unlockDoorSFX: {fileID: 8300000, guid: e7fd6ce4e7d782740b1a219754621abd, type: 3}
-  doorCloseSFX: {fileID: 8300000, guid: 0e671555f0cec4047ab4a13674a78cb2, type: 3}
+  doorOpenSFX: {fileID: 8300000, guid: 3e11f0dd5b3b30d419ed762d436f4692, type: 3}
+  unlockDoorSFX: {fileID: 8300000, guid: 3204e778767497645a3db88669f5f7a0, type: 3}
+  doorCloseSFX: {fileID: 8300000, guid: d3cb23ded47fc044392463cb0dbd11b1, type: 3}
   topRoom: {fileID: 0}
   rightRoom: {fileID: 0}
   bottomRoom: {fileID: 0}

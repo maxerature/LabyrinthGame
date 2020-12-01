@@ -61,7 +61,10 @@ MonoBehaviour:
   fieldOfView: {fileID: 0}
   canvas: {fileID: 0}
   audioSource: {fileID: 2477213036424780054}
-  gunShot: {fileID: 8300000, guid: 473a66c171d35ce47bd9ed405a3f4b47, type: 3}
+  gunShot: {fileID: 8300000, guid: 7e3dd2adc9b081545a5ae84a4bb99846, type: 3}
+  walkingSFX: {fileID: 8300000, guid: 7973286e3f023b74b9eb522b60a3d03e, type: 3}
+  takeDamageSFX: {fileID: 0}
+  dyingSFX: {fileID: 0}
   invincibilityTime: 2
   invincibilityTimeRemaining: 0
   regenTimerRemaining: 0
@@ -126,7 +129,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
