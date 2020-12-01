@@ -156,8 +156,6 @@ public class DoorCheck : MonoBehaviour
                 GameObject enemy = Instantiate(bossPrefab, transform.position, Quaternion.identity);
                 enemy.transform.parent = gameObject.transform;
                 enemies.Add(enemy);
-                //findme
-                playBossMusic.PlayTrack(MusicManager.Tracks.Boss);
             }
         }
         opened = false;
@@ -389,6 +387,14 @@ public class DoorCheck : MonoBehaviour
     public void playDoorCloseSFX()
     {
         MusicManager.instance.audioSource.PlayOneShot(doorCloseSFX);
+    }
+
+    public void activateBossMusic()
+    {
+        if (bossRoom)
+        {
+            playBossMusic.PlayTrack(MusicManager.Tracks.Boss);
+        }
     }
 }
 
