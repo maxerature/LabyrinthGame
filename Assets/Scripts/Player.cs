@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     public GameObject canvas;
     public AudioSource audioSource;
     public AudioClip gunShot;
+    public AudioClip walkingSFX;
+    public AudioClip takeDamageSFX;
+    public AudioClip dyingSFX;
 
     //Invincibility and Timers
     public float invincibilityTime;
@@ -203,7 +206,6 @@ public class Player : MonoBehaviour
 
             // apply movement to player's transform
             rb.AddForce(directionOfMovement);
-
         }
     }
 
@@ -259,6 +261,11 @@ public class Player : MonoBehaviour
                 hbscript.SetSize(healthPerc);
                 HUDController hud = canvas.GetComponent<HUDController>();
                 hud.setHealthText(health, maxHealth);
+
+                if (health != 0) {
+                    audioSource.pitch = Random.Range(0.85f, 1.20f);
+                    audioSource.PlayOneShot(takeDamageSFX);
+                }
             }
         }
 
