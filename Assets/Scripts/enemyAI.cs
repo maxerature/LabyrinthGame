@@ -129,7 +129,8 @@ public class enemyAI : MonoBehaviour
         //If health = 0, die
         if(health <= 0)
         {
-            audioSource.PlayOneShot(dieSFX);
+            MusicManager.instance.audioSource.pitch = Random.Range(0.75f, 1.1f);
+            MusicManager.instance.audioSource.PlayOneShot(dieSFX);
 
             GameObject roomControl = transform.parent.transform.gameObject;
             DoorCheck dc = roomControl.GetComponent<DoorCheck>();

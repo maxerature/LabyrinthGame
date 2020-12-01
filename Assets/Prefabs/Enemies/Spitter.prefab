@@ -213,7 +213,7 @@ MonoBehaviour:
   audioSource: {fileID: -297755477552922674}
   attackSFX: {fileID: 0}
   takeDamageSFX: {fileID: 0}
-  dieSFX: {fileID: 0}
+  dieSFX: {fileID: 8300000, guid: 9d902221101ceb348bcc0060b44a4e0f, type: 3}
   animator: {fileID: 5345501723235846044}
 --- !u!50 &6710875609824945724
 Rigidbody2D:
