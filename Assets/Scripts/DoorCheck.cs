@@ -10,7 +10,7 @@ public class DoorCheck : MonoBehaviour
     public GameObject openDoorPrefab;
     public GameObject itemPrefab;
     public GameObject pitPrefab;
-    public GameObject pillarPrefab;
+    public GameObject[] pillarPrefabs;
     public GameObject[] enemyTypes;
     public GameObject bossPrefab;
 
@@ -97,9 +97,17 @@ public class DoorCheck : MonoBehaviour
             int type;
             int obstacleCount = Random.Range(0, 75);
             GameObject obstacle;
+
+            bool[] xPos = new bool[15];
+            bool[] yPos = new bool[15];
             for (int i = 0; i < obstacleCount; i++)
             {
                 pos = new Vector3(Random.Range(-7, 7), Random.Range(-7, 7), 0);
+                if (xPos[(int)(pos.x + 7)] && yPos[(int)(pos.y + 7)] ) {
+                    continue;
+                }
+                xPos[(int)(pos.x + 7)] = true;
+                yPos[(int)(pos.y + 7)] = true;
                 pos = transform.position + pos;
 
                 type = Random.Range(0, 2);  //0 = pit, 1 = pillar
@@ -110,10 +118,12 @@ public class DoorCheck : MonoBehaviour
                         obstacle.transform.parent = gameObject.transform;
                         break;
                     case 1:
-                        obstacle = Instantiate(pillarPrefab, pos, Quaternion.identity);
+                        int obNum = Random.Range(0, pillarPrefabs.Length);
+                        obstacle = Instantiate(pillarPrefabs[obNum], pos, Quaternion.identity);
                         obstacle.transform.parent = gameObject.transform;
                         break;
                 }
+
             }
         }
     }
