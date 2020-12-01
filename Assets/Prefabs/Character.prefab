@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4063067949989035997}
   - component: {fileID: 4772024363077301873}
   - component: {fileID: 2477213036424780054}
-  - component: {fileID: 4156562008038786284}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -66,6 +65,7 @@ MonoBehaviour:
   walkingSFX: {fileID: 8300000, guid: 7973286e3f023b74b9eb522b60a3d03e, type: 3}
   takeDamageSFX: {fileID: 0}
   dyingSFX: {fileID: 0}
+  anim: {fileID: 0}
   invincibilityTime: 2
   invincibilityTimeRemaining: 0
   regenTimerRemaining: 0
@@ -212,25 +212,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &4156562008038786284
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4063067949989035984}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0a5eefd7cd4f3ed4389eda70ec9d262f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4063067950525832550
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +222,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4063067950525832549}
   - component: {fileID: 4063067950525832548}
-  - component: {fileID: 7007883599232592217}
   m_Layer: 0
   m_Name: CharacterSprite
   m_TagString: Player
@@ -314,25 +294,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!95 &7007883599232592217
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4063067950525832550}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0a5eefd7cd4f3ed4389eda70ec9d262f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4063067950801542317
 GameObject:
   m_ObjectHideFlags: 0

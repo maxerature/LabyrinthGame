@@ -1871,6 +1871,14 @@ PrefabInstance:
       propertyPath: walkingSFX
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4063067949989035999, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063067949989035999, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1229664314}
     - target: {fileID: 4063067950525832548, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
       propertyPath: m_SortingOrder
       value: 100
@@ -1891,17 +1899,25 @@ PrefabInstance:
       propertyPath: m_SpriteTileMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4063067950525832548, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063067950525832549, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063067950525832549, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
     - target: {fileID: 4063067950525832550, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4156562008038786284, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4772024363077301873, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c389a19105d1fbe44b3b54f2423125ba, type: 3}

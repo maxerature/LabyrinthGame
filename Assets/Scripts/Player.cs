@@ -29,7 +29,8 @@ public class Player : MonoBehaviour
     public AudioClip takeDamageSFX;
     public AudioClip dyingSFX;
     private bool enableDamageSFX = false;
-
+    public Animator anim;
+    Vector2 movement;
     //Invincibility and Timers
     public float invincibilityTime;
     private bool invincible = false;
@@ -125,7 +126,8 @@ public class Player : MonoBehaviour
     void Shoot(Vector3 aimDir)
     {
         Vector3 pos = transform.position;
-        pos += transform.right * 0.5f;
+        //pos += transform.right * 0.5f;
+        pos += aimDir * 0.5f;
         GameObject bullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
         PlayerBullet proj = bullet.GetComponent<PlayerBullet>();
         proj.direction = (aimDir).normalized;
@@ -170,7 +172,8 @@ public class Player : MonoBehaviour
             Vector3 vectorToTarget = targetPosition - transform.position;
             Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
             Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-            transform.rotation = targetRotation;
+            //transform.rotation = targetRotation;
+            transform.rotation = Quaternion.identity;
 
             //Rotate field of view.
             fieldOfView.SetAimDirection(aimDir);
@@ -201,7 +204,11 @@ public class Player : MonoBehaviour
             // convert user input into world movement
             float horizontalMovement = Input.GetAxisRaw("Horizontal") * moveSpeed;
             float verticalMovement = Input.GetAxisRaw("Vertical") * moveSpeed;
-
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            anim.SetFloat("animmovex",movement.x);
+            anim.SetFloat("animmovey",movement.y);
+            anim.SetFloat("speed",moveSpeed);
             //assign world movements to a Veoctor2
             Vector2 directionOfMovement = new Vector2(horizontalMovement, verticalMovement);
 
@@ -289,5 +296,3 @@ public class Player : MonoBehaviour
     }
 
 }
-
-\\\\\\
