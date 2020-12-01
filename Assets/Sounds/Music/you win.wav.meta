@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sounds/Music/you win.wav.meta
 guid: df6937bd6309da24da43808a23399b77
+=======
+guid: fe1e8e167fb0f4c469b0536292831fe2
+>>>>>>> f082de492e00e6463d59e4ae9db8cdda71885d9c:Assets/Sounds/SFX/door close v2.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sounds/Music/Dark Souls ' You Died ' Sound Effect.mp3.meta
 guid: 584e3dd6695abd6488aa7ba6ec0b26ea
+=======
+guid: 0d105fb5340460d4b9baddb50687bd96
+>>>>>>> f082de492e00e6463d59e4ae9db8cdda71885d9c:Assets/Sounds/SFX/basic select.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

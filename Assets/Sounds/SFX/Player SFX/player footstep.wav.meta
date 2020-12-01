@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sounds/SFX/Player SFX/player footstep.wav.meta
 guid: 7973286e3f023b74b9eb522b60a3d03e
+=======
+guid: 5af75db33a5115c479353a398da65b9c
+>>>>>>> f082de492e00e6463d59e4ae9db8cdda71885d9c:Assets/Sounds/SFX/door open.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

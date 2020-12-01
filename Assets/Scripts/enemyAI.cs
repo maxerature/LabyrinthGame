@@ -16,16 +16,13 @@ public class enemyAI : MonoBehaviour
     public float attackCooldown;
     public float attackCooldownRemaining;
 
+    public Animator animator;
+
     //Components
     public Transform target;
     private Rigidbody2D rb;
     public GameObject projectilePrefab;
-
-    //SFX Components
-    public AudioSource audioSource;
-    public AudioClip attackSFX;
-    public AudioClip takeDamageSFX;
-    public AudioClip dieSFX;
+    
 
     //Animator
     public Animator animator;
@@ -63,10 +60,14 @@ public class enemyAI : MonoBehaviour
                 GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                 ProjectileData proj = projectile.GetComponent<ProjectileData>();
                 proj.direction = (target.position - transform.position).normalized;
+                animator.SetBool("attack",true);
                 proj.damage = attackPower;
+<<<<<<< HEAD
 
                 audioSource.PlayOneShot(attackSFX);
                 animator.SetBool("Shoot", true);
+=======
+>>>>>>> f082de492e00e6463d59e4ae9db8cdda71885d9c
             }
             else
             {
@@ -81,9 +82,13 @@ public class enemyAI : MonoBehaviour
     {
         Vector3 lastPos = transform.position;
 
+<<<<<<< HEAD
         //Animate Walking
         animator.SetFloat("Speed", Mathf.Abs(moveSpeed));
         
+=======
+        animator.SetFloat("speed", Mathf.Abs(moveSpeed));
+>>>>>>> f082de492e00e6463d59e4ae9db8cdda71885d9c
 
         //If too far from player, move closer
         if (Vector3.Distance(transform.position, target.position) > attemptedOuterDistance)
@@ -121,25 +126,24 @@ public class enemyAI : MonoBehaviour
         health -= damage;
         transform.Translate(new Vector2(-knockback,0));
 
-        if(health > 0)
-        {
-            audioSource.PlayOneShot(takeDamageSFX);
-        }
-
         //If health = 0, die
         if(health <= 0)
         {
-            audioSource.PlayOneShot(dieSFX);
-
             GameObject roomControl = transform.parent.transform.gameObject;
             DoorCheck dc = roomControl.GetComponent<DoorCheck>();
 
-            Destroy(gameObject);
+            animator.SetBool("death", true);
+            //StartCoroutine(wait());
+            Death();
             dc.enemyCount--;
             dc.enemyKilled();
         }
     }
 
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
 
     public void hit(Vector2 knockback)
     {

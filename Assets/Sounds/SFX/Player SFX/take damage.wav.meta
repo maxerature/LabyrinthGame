@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sounds/SFX/Player SFX/take damage.wav.meta
 guid: aa6b2b5a80b28414c80fcf4ec7620d67
+=======
+guid: 57d61c3769658d343a73064c91310ad6
+>>>>>>> f082de492e00e6463d59e4ae9db8cdda71885d9c:Assets/Sounds/SFX/door unlock.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
